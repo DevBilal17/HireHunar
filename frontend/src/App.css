@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Nothing+You+Could+Do&display=swap');
+
+html{
+  font-family: "Mona Sans", sans-serif;
+}
+body{
+  padding: 0 20px;
+}
+/* Style the scrollbar track */
+.home::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.home::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+}
+
+/* Style the scrollbar thumb */
+.home::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #e771b4, #ff85a1, #fd7ba7);
+  border-radius: 10px; /* Makes the thumb rounded */
+}
+
+/* Optional: Hover effect on the scrollbar thumb */
+.home::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #d4619e, #ff7793, #fc6d99);
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #e771b4, #ff85a1, #fd7ba7);
+  border-radius: 10px; /* Makes the thumb rounded */
+}
+
+/* Optional: Hover effect on the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #d4619e, #ff7793, #fc6d99);
+}

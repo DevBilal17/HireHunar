@@ -1,0 +1,94 @@
+.heroSection {
+  height: 85vh;
+  width: 100%;
+  border-radius: 20px;
+  background: #ffe3e8;
+  background: linear-gradient(167deg, #fcf5f3 20%, #facbe4 50%, #f2a0e2 100%);
+}
+.heroSection .c-success .icon,
+.heroSection .c-success .badge,
+.heroSection .j .icon,
+.heroSection .efficient .icon,
+.g {
+  background: #e771b4;
+  background: linear-gradient(
+    165deg,
+    rgba(231, 113, 180, 0.89) 45%,
+    rgba(255, 133, 161, 1) 70%,
+    rgba(253, 123, 167, 1) 100%
+  );
+}
+.floating1{
+    position: absolute;
+    left: 16%;
+  top:14%;
+}
+.floating2{
+  position: absolute;
+  left: 8%;
+top:44%;
+}
+.floating3{
+  position: absolute;
+  top: 20%;
+ right: 6%;
+}
+.floating4{
+  position: absolute;
+  right: 18%;
+  bottom: 18%;
+}
+
+/* Media query for max-width: 1440px */
+@media (max-width: 1440px) {
+    /* Specific nth-of-type styling */
+    .floating1{
+      left: 11%;
+    }
+    .floating2{
+      left: 3%;
+    }
+    .floating3{
+        right: 3%;
+    }
+    .floating4{
+        right: 15%;
+    }
+  }
+  
+  /* Media query for max-width: 1330px */
+  @media (max-width: 1330px) {
+    /* Specific nth-of-type styling */
+    .floating1{
+      left: 7%;
+  }
+  .floating2{
+    left: 2%;
+  }
+  .floating3{
+    right: 1%;
+  }
+  .floating4{
+    right: 8%;
+  }
+  }
+
+  @media (max-width:1240px) {
+    .floating2,.floating3{
+      display: none;
+    }
+    .floating1{
+      left: 5%;
+      top: 10%;
+    }
+    .floating4{
+      right: 6%;
+      bottom: 9%;
+    }
+  }
+
+  @media (max-width:990px) {
+    .floating1,.floating4{
+      display: none;
+    }
+  }

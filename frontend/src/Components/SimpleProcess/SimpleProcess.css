@@ -1,0 +1,20 @@
+.processCard::after{
+  content: "";
+  position: absolute;
+  height: 30%;
+  width: 1px;
+  border-radius: 10px;
+  background: #b1b1b193;
+  bottom: 0;
+  margin-left: 5px;
+}
+.processCard.before::before{
+    content: "";
+  position: absolute;
+  height: 30%;
+  width: 1px;
+  margin-left: 5px;
+  border-radius: 10px;
+  background: #b1b1b193;
+  top: 0;
+}

@@ -1,0 +1,13 @@
+.job-discover .p1{
+    background: #e771b4;
+    background: linear-gradient(
+      165deg,
+      rgba(231, 113, 180, 0.89) 45%,
+      rgba(255, 133, 161, 1) 70%,
+      rgba(253, 123, 167, 1) 100%
+    );
+    -webkit-background-clip: text; /* Clipping background to text */
+  -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
+  background-clip: text; /* For non-webkit browsers */
+  text-fill-color: transparent; /* Makes the text itself transparent for non-webkit browsers */
+}
