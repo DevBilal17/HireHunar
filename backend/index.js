@@ -17,6 +17,8 @@ mongoose
 
 const app = express();
 
+app.use(express.json());
+
 app.listen(process.env.port, () => {
   console.log(`Server is running on port ${process.env.port}`);
 });
@@ -39,3 +41,5 @@ app.use((err, req, res, next) => {
 // npm i express
 // npm i mongoose
 // npm i dotenv
+// npm i bcryptjs
+// npm i jsonwebtoken
