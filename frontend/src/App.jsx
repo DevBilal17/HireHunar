@@ -1,24 +1,21 @@
 import React from 'react'
-import HeroSection from './Components/HeroSection/HeroSection'
-import HomeNavbar from './Components/HomeNav/HomeNavbar';
 import './App.css'
-import About from './Components/About/About';
-import JobDiscover from './Components/JobDiscover/JobDiscover';
-import CategorySection from './Components/CategorySection/CategorySection';
-import TopCompanies from './Components/TopCompanies/TopCompanies';
-import SimpleProcess from './Components/SimpleProcess/SimpleProcess';
+
+import { Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
 import Footer from './Components/Footer/Footer';
-import NewsLetter from './Components/NewsLetter/NewsLetter';
+import HomeNavbar from './Components/HomeNav/HomeNavbar';
+import Register from './Pages/Register/Register';
 const App = () => {
   return (
-    <div className='max-w-[1500px] mx-auto home'>
+    <div className='max-w-[1500px] mx-auto'>
       <HomeNavbar/>
-      <HeroSection/>
-      <About/>
-      <JobDiscover/>
-      <TopCompanies/>
-      <SimpleProcess/>
-      <NewsLetter/>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
+      </Routes>
       <Footer/>
     </div>
   )
