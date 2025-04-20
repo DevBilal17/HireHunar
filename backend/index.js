@@ -19,10 +19,6 @@ app.listen(process.env.port, () => {
   console.log(`Server is running on port ${process.env.port}`);
 });
 
-// username: abdulwaleedfsd
-// password: DNtXhtkeRDyJvrBV
-// connectionstring: mongodb+srv://abdulwaleedfsd:DNtXhtkeRDyJvrBV@hirehunar.pzuzff1.mongodb.net/hirehunar?retryWrites=true&w=majority&appName=hirehunar
-
 // list of commands for backend
 // npm init -y
 // npm i express
