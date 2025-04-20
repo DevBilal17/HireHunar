@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomeNavbar = () => {
+const HomeNavbar = ({className}) => {
   return (
-    <nav className="w-full h-[70px] flex items-center justify-between">
+    <nav className={`w-full h-[70px] flex items-center justify-between ${className=='hide'&&'hidden'}`}>
       <Link to={'/'}>
         <h3 className="brand font-semibold text-[25px]">
           <img src="" alt="" className="logo" />

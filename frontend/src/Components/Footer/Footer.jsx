@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 
-const Footer = () => {
+const Footer = ({className}) => {
   return (
-    <footer className="bg-white text-gray-800 py-10 px-4 sm:px-8 md:px-16 mt-auto">
+    <footer className={`bg-white text-gray-800 py-10 px-4 sm:px-8 md:px-16 mt-auto  ${className=='hide'&&'hidden'}`}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         
         {/* HireMe Branding */}

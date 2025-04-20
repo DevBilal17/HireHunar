@@ -4,7 +4,7 @@ html{
   font-family: "Mona Sans", sans-serif;
 }
 body{
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 /* Style the scrollbar track */
 .home::-webkit-scrollbar {
