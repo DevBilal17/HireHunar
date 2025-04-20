@@ -12,7 +12,7 @@ const HomeNavbar = () => {
       </Link>
       <ul className="nav-list md:flex hidden items-center gap-6 font-normal ">
         <li className="nav-item">
-          <Link>Find a Job</Link>
+          <Link to={'/find-jobs'}>Find a Job</Link>
         </li>
         <li className="nav-item">
           <Link>Companies</Link>

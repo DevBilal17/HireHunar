@@ -7,6 +7,7 @@ import Login from './Pages/Login/Login';
 import Footer from './Components/Footer/Footer';
 import HomeNavbar from './Components/HomeNav/HomeNavbar';
 import Register from './Pages/Register/Register';
+import FindJobs from './Pages/FindJobs/FindJobs';
 const App = () => {
   return (
     <div className='max-w-[1500px] mx-auto'>
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
+        <Route path='/find-jobs' element={<FindJobs/>}/>
       </Routes>
       <Footer/>
     </div>

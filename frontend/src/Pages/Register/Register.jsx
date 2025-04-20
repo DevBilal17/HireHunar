@@ -39,13 +39,13 @@ const Register = () => {
         </div>
       </div>
       <div className="right w-[50%]  pt-10 flex items-center justify-center">
-        <div className="w-[408px] p-5 rounded-2xl h-[550px] bg-white">
+        <div className="max-w-[440px] w-full p-5 px-6 rounded-2xl h-[550px] bg-white">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="choice w-full flex justify-center gap-1.5">
               <button
                 className={` ${
                   choice == "Job Seeker" && "bgLinearBtn text-white"
-                } cursor-pointer px-3 py-2 `}
+                } cursor-pointer px-3 py-2 border border-gray-300 `}
                 onClick={() => handleChoice("Job Seeker")}
               >
                 Job Seeker
@@ -53,7 +53,7 @@ const Register = () => {
               <button
                 className={` ${
                   choice == "Company" && "bgLinearBtn text-white"
-                } cursor-pointer px-3 py-2 `}
+                } cursor-pointer px-3 py-2 border border-gray-300`}
                 onClick={() => handleChoice("Company")}
               >
                 Company
@@ -113,7 +113,7 @@ const Register = () => {
               >
                 SignUp
               </Button>
-               <span className="mt-2">
+               <span className="mt-0">
                             Already have an account?{" "}
                             <Link to={"/login"} className="textLinear font-semibold">
                               Log In
