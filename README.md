@@ -1,0 +1,1 @@
+HireHunar is a full-featured web platform designed to connect job seekers (from all backgrounds: skilled workers, fresh graduates, professionals) with employers looking to hire talent. The platform supports profile creation, job postings, smart filtering, messaging, and review systems. It will integrate AI-based features to assist users with job discovery and skill promotion.
