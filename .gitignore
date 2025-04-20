@@ -1,3 +1,4 @@
 class-list.json
 pid
 node_modules
+.env
