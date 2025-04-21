@@ -60,18 +60,67 @@ body{
     rgba(255, 133, 161, 1) 70%,
     rgba(253, 123, 167, 1) 100%
   );
+  background: #71e7da;
+  background: linear-gradient(
+    165deg,
+    rgba(113, 231, 218, 0.89) 45%,
+    rgba(133, 255, 238, 1) 70%,
+    rgba(123, 253, 243, 1) 100%
+  );
+  background: #71cbe7;
+  background: linear-gradient(
+    165deg,
+    rgba(113, 203, 231, 0.89) 45%,
+    rgba(133, 217, 255, 1) 70%,
+    rgba(123, 207, 253, 1) 100%
+  );
+  background: #A4E1E6;    
+  color: #000;
 }
+.s{
+  box-shadow: 3px 20px 60px -47px rgba(0,0,0,0.5);
+-webkit-box-shadow: 3px 20px 60px -47px rgba(0,0,0,0.5);
+-moz-box-shadow: 6px 4px 107px -47px rgba(0,0,0,0.5);
 
+
+box-shadow: 0 2px 20px -10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+-webkit-box-shadow: 0 2px 20px -10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 2px 20px -10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.n{
+  box-shadow: 3px 4px 107px -47px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 3px 4px 107px -47px rgba(0,0,0,0.5);
+  -moz-box-shadow: 6px 4px 107px -47px rgba(0,0,0,0.5);
+
+  box-shadow: 0 2px 20px -10px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+-webkit-box-shadow: 0 2px 20px -10px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
 .textLinear{
-  background: #e771b4;
+  /* background: #e771b4;
   background: linear-gradient(
     165deg,
     rgba(231, 113, 180, 0.89) 45%,
     rgba(255, 133, 161, 1) 70%,
     rgba(253, 123, 167, 1) 100%
-  );
+  ); */
+
+  
+background: #d9f9fa;  
+background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
   -webkit-background-clip: text; /* Clipping background to text */
 -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
 background-clip: text; /* For non-webkit browsers */
 text-fill-color: transparent; /* Makes the text itself transparent for non-webkit browsers */
+}
+
+
+.bgHero{
+  background: #eefafa;  
+background: linear-gradient(167deg, #e0f9f9 20%, #91d3f0 50%, #88d8d8 100%); 
+
+ background: #d9f9fa;  
+background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%); 
 }

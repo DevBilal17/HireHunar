@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './App.css'
 
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -12,14 +12,16 @@ import Dashboard from './Pages/PrivatePages/Dashboard/Dashboard';
 import Messages from './Pages/PrivatePages/Messages/Messages';
 import FindJ from './Pages/PrivatePages/FindJobs/FindJ';
 import ProfilePage from './Pages/PrivatePages/ProfilePage/ProfilePage';
+import { UserContextData } from './Contexts/UserContext';
 
 const App = () => {
+  
   const [url,setUrl] = useState(false);
   let location = useLocation();
   useEffect(()=>{
       setUrl(location.pathname.includes('dashboard') ||
       location.pathname.includes('messages') ||
-      location.pathname.includes('find-job') ||
+      location.pathname.includes('f-job') ||
       location.pathname.includes('my-profile'))
   },[location])
   return (
@@ -33,7 +35,7 @@ const App = () => {
         <Route path='/find-jobs' element={<FindJobs/>}/>
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/messages' element={<Messages/>} />
-        <Route path='/find-job' element={<FindJ/>} />
+        <Route path='/f-job' element={<FindJ/>} />
         <Route path='/my-profile' element={<ProfilePage/>} />
       </Routes>
       <Footer className={`${url&&'hide'}`}/>

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/Images/login.png";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import "../Login/Login.css";
+import { UserAuthContext } from "../../Contexts/AuthContext";
 const Register = () => {
   const [choice, setChoice] = useState("Job Seeker");
   const handleChoice = (c) => {
@@ -15,6 +16,8 @@ const Register = () => {
       }
     }
   };
+
+  let {callSignUpApi, loading, error} = useContext(UserAuthContext)
   const {
     register,
     handleSubmit,
@@ -24,10 +27,14 @@ const Register = () => {
 
   const onSubmit = (data) => {
     let formData = {
-      userChoice: choice,
       ...data,
+      userType: choice,
     };
-    console.log(formData);
+     
+    callSignUpApi(data);
+
+    console.log(error)
+    
   };
   return (
     <div className="flex justify-between  items-center w-full h-full bgLinear overflow-x-hidden rounded-[20px]">
@@ -70,15 +77,15 @@ const Register = () => {
               Or signup with email
             </div> */}
             <div className="flex flex-col gap-4 mt-5">
-            <div>
+              <div>
                 <div className="mb-2 block">
                   <Label htmlFor="name">Full Name</Label>
                 </div>
                 <TextInput
                   id="name"
-                  type="name"
+                  type="text"
                   placeholder="Enter your full name"
-                  {...register("Full Name", { required: true })}
+                  {...register("name", { required: true })}
                 />
               </div>
               <div>
@@ -89,7 +96,7 @@ const Register = () => {
                   id="email"
                   type="email"
                   placeholder="name@hirehunar.com"
-                  {...register("Email Address", { required: true })}
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
@@ -100,25 +107,25 @@ const Register = () => {
                   id="password"
                   type="password"
                   placeholder="Enter Password"
-                  {...register("Password", { required: true })}
+                  {...register("password", { required: true })}
                 />
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <Checkbox id="remember" {...register("Remember Me")} />
                 <Label htmlFor="remember">Remember me</Label>
-              </div>
+              </div> */}
               <Button
                 type="submit"
-                className="bg-black cursor-pointer hover:bg-gray-950"
+                className="bg-black cursor-pointer hover:bg-gray-950 mt-3"
               >
-                SignUp
+                {loading?'Signing Up':'SignUp'}
               </Button>
-               <span className="mt-0">
-                            Already have an account?{" "}
-                            <Link to={"/login"} className="textLinear font-semibold">
-                              Log In
-                            </Link>
-                          </span>
+              <span className="mt-0">
+                Already have an account?{" "}
+                <Link to={"/login"} className="textLinear font-semibold">
+                  Log In
+                </Link>
+              </span>
             </div>
           </form>
         </div>

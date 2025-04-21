@@ -4,7 +4,7 @@ import DashNav from '../../../PrivateComponents/DashNav/DashNav'
 
 const Messages = () => {
   return (
-    <div className='flex gap-5'>
+    <div className='flex '>
         <Side/>
         <div className='w-full flex flex-col'>
         <DashNav title={'Messages'} />
