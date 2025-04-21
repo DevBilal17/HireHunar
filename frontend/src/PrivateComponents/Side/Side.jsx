@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
@@ -6,9 +6,11 @@ import { FaRegUser } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { Tooltip } from "flowbite-react";
+import { UserAuthContext } from "../../Contexts/AuthContext";
 const Side = () => {
   let location = useLocation();
   const [active,setActive] = useState('dashboard')
+  let {callLogOut} = useContext(UserAuthContext)
   useEffect(()=>{
      if(location.pathname.includes('dashboard')){
        setActive('dashboard')
@@ -72,11 +74,11 @@ const Side = () => {
         </ul>
         <ul className="mt-auto flex gap-2 flex-col">
           <li className="bg-amber-600 rounded-xl  ">
-            <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
+            <button className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
               <IoIosLogOut className="text-[18px]" />
               <span className="">Log Out</span>
               
-            </Link>
+            </button>
           </li>
           <li className="bg-amber-600  rounded-xl ">
             <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
@@ -143,11 +145,11 @@ const Side = () => {
         <ul className="mt-auto flex gap-2 flex-col">
           <li className="bg-amber-600 lg:rounded-xl rounded-full ">
           <Tooltip content="Logout" placement="right">
-            <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
+            <button className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
               <IoIosLogOut className="text-[18px]" />
               <span className="hidden lg:block">Log Out</span>
               
-            </Link>
+            </button>
             </Tooltip>
           </li>
           <li className="bg-amber-600  lg:rounded-xl rounded-full  ">

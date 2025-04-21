@@ -12,8 +12,7 @@ import Dashboard from './Pages/PrivatePages/Dashboard/Dashboard';
 import Messages from './Pages/PrivatePages/Messages/Messages';
 import FindJ from './Pages/PrivatePages/FindJobs/FindJ';
 import ProfilePage from './Pages/PrivatePages/ProfilePage/ProfilePage';
-import { UserContextData } from './Contexts/UserContext';
-
+import { ToastContainer } from "react-toastify";
 const App = () => {
   
   const [url,setUrl] = useState(false);
@@ -40,7 +39,7 @@ const App = () => {
         
       </Routes>
       <Footer className={`${url&&'hide'}`}/>
-      
+      <ToastContainer position="top-right" autoClose={3000} />
       
       
     </div>

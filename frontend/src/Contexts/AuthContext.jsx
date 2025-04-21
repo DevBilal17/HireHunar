@@ -1,25 +1,36 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+// import { useCookies } from "react-cookie";
 export const UserAuthContext = createContext();
 
 const AuthContext = ({ children }) => {
+  // const [cookies, setCookie, removeCookie] = useCookies();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   const callLoginApi = async (data) => {
     setLoading(true)
-    setError(null)
+    setMessage(null)
     try {
-      console.log(data)
+      // console.log(data)
       const response = await axios.post('/backend/auth/signin',data);
       console.log(response)
       setIsAuthenticated(true)
       setUser(response)
-      console.log(user)
-      alert(response)
+      // console.log(user)
+   
+
+        toast.success('Login successful!')
+        navigate('/dashboard')
+      
     } catch (err) {
-      setError(err.response?.data?.message || "SignIn Failed")
+      console.log(err.response)
+      setMessage(err.response?.data?.message || "SignIn Failed")
+      toast.error(err.response?.data?.message || "SignIn Failed")
     }
     finally{
       setLoading(false)
@@ -28,22 +39,36 @@ const AuthContext = ({ children }) => {
 
   const callSignUpApi = async (data) => {
     setLoading(true);
-    setError(null);
+    setMessage(null);
     try {
       
       const response = await axios.post("/backend/auth/signup", data);
-      console.log(response.data)
-      alert(response.data)
+      
+      
+        // toast.success(response.data.message)
+        toast.success("Signup successful! Please log in.");
+        navigate('/login')
+      
     } catch (err) {
-      setError(err.response?.data?.message || "Signup failed");
-      console.error("Signup error:", err);
+      console.log(err.response.data.message)
+      setMessage(err.response?.data?.message || "Signup failed");
+      toast.error(err.response?.data?.message || "Signup failed")
     } finally {
       setLoading(false);
     }
   };
+
+   const callLogOut = ()=>{
+    setIsAuthenticated(false)
+    setUser(null) 
+    toast.success("Logged out successfully");
+    navigate('/');
+    
+   }
+
   return (
     <UserAuthContext.Provider
-      value={{ isAuthenticated, user, callSignUpApi, callLoginApi ,loading, error }}
+      value={{ isAuthenticated, user,callLogOut, callSignUpApi, callLoginApi ,loading, message }}
     >
       {children}
     </UserAuthContext.Provider>

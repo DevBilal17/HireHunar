@@ -3,15 +3,15 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
-import UserContext from "./Contexts/UserContext.jsx";
+// import { CookiesProvider } from "react-cookie";
 import AuthContext from "./Contexts/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <AuthContext>
-    <UserContext>
-      <BrowserRouter>
+  <BrowserRouter>
+    {/* <CookiesProvider> */}
+      <AuthContext>
         <App />
-      </BrowserRouter>
-    </UserContext>
-  </AuthContext>
+      </AuthContext>
+    {/* </CookiesProvider> */}
+  </BrowserRouter>
 );
