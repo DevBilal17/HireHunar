@@ -7,12 +7,13 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import "../Login/Login.css";
 import { UserAuthContext } from "../../Contexts/AuthContext";
 const Register = () => {
-  const [choice, setChoice] = useState("Job Seeker");
-  const handleChoice = (c) => {
+  const [choice, setChoice] = useState("jobseeker");
+  const handleChoice = (c,event) => {
+    event.preventDefault()
     if (c != choice) {
-      if (choice == "Job Seeker") setChoice("Company");
+      if (choice == "jobseeker") setChoice("company");
       else {
-        setChoice("Job Seeker");
+        setChoice("jobseeker");
       }
     }
   };
@@ -24,16 +25,16 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+console.log(loading)
   const onSubmit = (data) => {
     let formData = {
       ...data,
       userType: choice,
     };
      
-    callSignUpApi(data);
+    callSignUpApi(formData);
 
-    console.log(error)
+    // console.log(error)
     
   };
   return (
@@ -50,18 +51,20 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="choice w-full flex justify-center gap-1.5">
               <button
+              type="button"
                 className={` ${
                   choice == "Job Seeker" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300 `}
-                onClick={() => handleChoice("Job Seeker")}
+                onClick={(event) => handleChoice("jobseeker", event)}
               >
                 Job Seeker
               </button>
               <button
+              type="button"
                 className={` ${
                   choice == "Company" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300`}
-                onClick={() => handleChoice("Company")}
+                onClick={(event) => handleChoice("company", event)}
               >
                 Company
               </button>
