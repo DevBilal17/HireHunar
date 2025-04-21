@@ -25,7 +25,7 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-console.log(loading)
+
   const onSubmit = (data) => {
     let formData = {
       ...data,
@@ -53,7 +53,7 @@ console.log(loading)
               <button
               type="button"
                 className={` ${
-                  choice == "Job Seeker" && "bgLinearBtn text-white"
+                  choice == "jobseeker" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300 `}
                 onClick={(event) => handleChoice("jobseeker", event)}
               >
@@ -62,7 +62,7 @@ console.log(loading)
               <button
               type="button"
                 className={` ${
-                  choice == "Company" && "bgLinearBtn text-white"
+                  choice == "company" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300`}
                 onClick={(event) => handleChoice("company", event)}
               >

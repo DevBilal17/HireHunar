@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { Tooltip } from "flowbite-react";
 const Side = () => {
+  let location = useLocation();
+  const [active,setActive] = useState('dashboard')
+  useEffect(()=>{
+     if(location.pathname.includes('dashboard')){
+       setActive('dashboard')
+     }
+     else if(location.pathname.includes('messages')){
+        setActive('messages')
+     }
+     console.log('object')
+  },[location])
   return (
     <>
     <section className=" transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full  h-[100vh] lg:p-5 py-5 px-3 s sticky z-20 bg-white left-0 top-0 ">
@@ -18,7 +29,7 @@ const Side = () => {
       </Link>
       <div className="lg:flex hidden flex-col h-[94%]">
         <ul className="mt-10 flex flex-col justify-center gap-2">
-          <li className="bg-amber-600 rounded-xl  ">
+          <li className={`${active=='dashboard'?'bg-blue-300':''} rounded-xl border `}>
             
             <Link
               to={"/dashboard"}
@@ -28,7 +39,7 @@ const Side = () => {
               <span className="">Dashboard</span>
             </Link>
           </li>
-          <li className="bg-amber-600  rounded-xl  ">
+          <li className={`${active=='messages'?'bg-blue-300':''} rounded-xl border `}>
             <Link
               to={"/messages"}
               className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"

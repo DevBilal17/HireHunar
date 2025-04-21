@@ -7,15 +7,33 @@ const AuthContext = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-  const callLoginApi = async (data) => {};
+  const callLoginApi = async (data) => {
+    setLoading(true)
+    setError(null)
+    try {
+      console.log(data)
+      const response = await axios.post('/backend/auth/signin',data);
+      console.log(response)
+      setIsAuthenticated(true)
+      setUser(response)
+      console.log(user)
+      alert(response)
+    } catch (err) {
+      setError(err.response?.data?.message || "SignIn Failed")
+    }
+    finally{
+      setLoading(false)
+    }
+  };
 
   const callSignUpApi = async (data) => {
     setLoading(true);
     setError(null);
     try {
-        console.log(await data + 'My Data')
+      
       const response = await axios.post("/backend/auth/signup", data);
-      console.log(response);
+      console.log(response.data)
+      alert(response.data)
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
       console.error("Signup error:", err);
@@ -25,7 +43,7 @@ const AuthContext = ({ children }) => {
   };
   return (
     <UserAuthContext.Provider
-      value={{ isAuthenticated, user, callSignUpApi, loading, error }}
+      value={{ isAuthenticated, user, callSignUpApi, callLoginApi ,loading, error }}
     >
       {children}
     </UserAuthContext.Provider>

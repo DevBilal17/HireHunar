@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/Images/login.png";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import "./Login.css";
+import { UserAuthContext } from "../../Contexts/AuthContext";
 const Login = () => {
-  const [choice, setChoice] = useState("Job Seeker");
-  const handleChoice = (c) => {
-    if (c != choice) {
-      if (choice == "Job Seeker") setChoice("Company");
-      else {
-        setChoice("Job Seeker");
-      }
-    }
-  };
+ const [choice, setChoice] = useState("jobseeker");
+   const handleChoice = (c,event) => {
+     event.preventDefault()
+     if (c != choice) {
+       if (choice == "jobseeker") setChoice("company");
+       else {
+         setChoice("jobseeker");
+       }
+     }
+   };
+
+ let {callLoginApi, loading, error} = useContext(UserAuthContext)
+
   const {
     register,
     handleSubmit,
@@ -24,10 +29,14 @@ const Login = () => {
 
   const onSubmit = (data) => {
     let formData = {
-      userChoice: choice,
       ...data,
+      userType: choice,
     };
-    console.log(formData);
+     
+    callLoginApi(formData);
+
+    // console.log(error)
+    
   };
   return (
     <div className="flex justify-between items-center w-full h-full bgLinear overflow-x-hidden rounded-[20px]">
@@ -44,17 +53,17 @@ const Login = () => {
             <div className="choice w-full flex justify-center gap-1.5">
               <button
                 className={` ${
-                  choice == "Job Seeker" && "bgLinearBtn text-white"
+                  choice == "jobseeker" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300 `}
-                onClick={() => handleChoice("Job Seeker")}
+                onClick={(event) => handleChoice("jobseeker", event)}
               >
                 Job Seeker
               </button>
               <button
                 className={` ${
-                  choice == "Company" && "bgLinearBtn text-white"
+                  choice == "company" && "bgLinearBtn text-white"
                 } cursor-pointer px-3 py-2 border border-gray-300 `}
-                onClick={() => handleChoice("Company")}
+                onClick={(event) => handleChoice("company", event)}
               >
                 Company
               </button>
@@ -78,7 +87,7 @@ const Login = () => {
                   id="email"
                   type="email"
                   placeholder="name@hirehunar.com"
-                  {...register("Email Address", { required: true })}
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
@@ -89,7 +98,7 @@ const Login = () => {
                   id="password"
                   type="password"
                   placeholder="Enter Password"
-                  {...register("Password", { required: true })}
+                  {...register("password", { required: true })}
                 />
               </div>
               {/* <div className="flex items-center gap-2">
@@ -100,7 +109,7 @@ const Login = () => {
                 type="submit"
                 className="bg-black cursor-pointer hover:bg-gray-950 mt-2.5"
               >
-                Login
+                {loading?'Logging In':'Login'}
               </Button>
               <span className="mt-2">
               Don't have an account?{" "}

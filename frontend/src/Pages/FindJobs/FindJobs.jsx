@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FiMapPin } from "react-icons/fi";
 import Jobs from "./Jobs";
+import JobDiscover from "../../Components/JobDiscover/JobDiscover";
+import CategorySection from "../../Components/CategorySection/CategorySection";
 
 const FindJobs = () => {
    
@@ -35,7 +37,8 @@ const FindJobs = () => {
           </div>
         </form>
       </div>
-      <Jobs/>
+      {/* <Jobs/> */}
+      <CategorySection/>
     </div>
   );
 };

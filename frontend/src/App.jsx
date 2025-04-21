@@ -37,6 +37,7 @@ const App = () => {
         <Route path='/messages' element={<Messages/>} />
         <Route path='/f-job' element={<FindJ/>} />
         <Route path='/my-profile' element={<ProfilePage/>} />
+        
       </Routes>
       <Footer className={`${url&&'hide'}`}/>
       
