@@ -2,8 +2,26 @@
   height: 85vh;
   width: 100%;
   border-radius: 20px;
-  background: #ffe3e8;
-  background: linear-gradient(167deg, #fcf5f3 20%, #facbe4 50%, #f2a0e2 100%);
+  /* background: #ffe3e8;
+  background: linear-gradient(167deg, #fcf5f3 20%, #facbe4 50%, #f2a0e2 100%); */
+
+  /* background: #e3ffff;
+background: linear-gradient(167deg, #f3fcfc 20%, #cbeffc 50%, #a0f2f2 100%); */
+
+/* background: #b0dfe3;
+background: linear-gradient(167deg, #a0cfcf 20%, #6fb8cc 50%, #5aa6a6 100%); */
+
+/* background: #d9f9fa;  
+background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%); */
+
+background: #eefafa;  
+background: linear-gradient(167deg, #e0f9f9 20%, #a3e3e8 50%, #88d8d8 100%);  
+
+background: #eefafa;  
+background: linear-gradient(167deg, #e0f9f9 20%, #91d3f0 50%, #88d8d8 100%);  
+
+
+
 }
 .heroSection .c-success .icon,
 .heroSection .c-success .badge,

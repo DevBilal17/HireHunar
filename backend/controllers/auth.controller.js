@@ -8,11 +8,6 @@ import jwt from "jsonwebtoken";
 export const signup = async (req, res, next) => {
   const { userType, name, email, password } = req.body;
 
-  const validUser = await User.findOne({ email });
-  if (validUser) {
-    return next(errorHandler(409, "User already exists!"));
-  }
-
   if (
     !userType ||
     !name ||
@@ -23,12 +18,13 @@ export const signup = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    return next(errorHandler(400, "All fields are required!"));
+    next(errorHandler(400, "All fields are required!"));
   }
-
-  if (userType !== "jobseeker" && userType !== "company") {
-    return next(errorHandler(400, "Invalid usertype!"));
-  }
+ // Check if email already exists
+//  const existingUser = await User.findOne({ email });
+//  if (existingUser) {
+//    return next(errorHandler(400, "Email is already in use!"));
+//  }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 

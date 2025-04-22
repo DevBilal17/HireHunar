@@ -39,7 +39,7 @@ const Login = () => {
         </div>
       </div>
       <div className="right w-[50%]  pt-14 flex items-center justify-center">
-        <div className="max-w-[440px] w-full p-5 px-6 rounded-2xl h-[508px] bg-white">
+        <div className="max-w-[440px] w-full p-5 px-6 rounded-2xl h-[480px] bg-white">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="choice w-full flex justify-center gap-1.5">
               <button
@@ -92,13 +92,13 @@ const Login = () => {
                   {...register("Password", { required: true })}
                 />
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <Checkbox id="remember" {...register("Remember Me")} />
                 <Label htmlFor="remember">Remember me</Label>
-              </div>
+              </div> */}
               <Button
                 type="submit"
-                className="bg-black cursor-pointer hover:bg-gray-950"
+                className="bg-black cursor-pointer hover:bg-gray-950 mt-2.5"
               >
                 Login
               </Button>
