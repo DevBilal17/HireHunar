@@ -20,11 +20,11 @@ export const signup = async (req, res, next) => {
   ) {
     next(errorHandler(400, "All fields are required!"));
   }
- // Check if email already exists
-//  const existingUser = await User.findOne({ email });
-//  if (existingUser) {
-//    return next(errorHandler(400, "Email is already in use!"));
-//  }
+  // Check if email already exists
+  //  const existingUser = await User.findOne({ email });
+  //  if (existingUser) {
+  //    return next(errorHandler(400, "Email is already in use!"));
+  //  }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
@@ -96,7 +96,10 @@ export const signin = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      .json(rest);
+      .json({
+        message: "Signin is successful",
+        user: rest,
+      });
   } catch (error) {
     if (error.name === "CastError") {
       return next(errorHandler(400, "Invalid data format!"));
