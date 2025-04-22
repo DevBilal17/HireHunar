@@ -8,6 +8,7 @@ export const UserAuthContext = createContext();
 const AuthContext = ({ children }) => {
   // const [cookies, setCookie, removeCookie] = useCookies();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [local,setLocal] = useState(null)
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
@@ -20,9 +21,10 @@ const AuthContext = ({ children }) => {
       const response = await axios.post('/backend/auth/signin',data);
       // console.log(response)
       setIsAuthenticated(true)
-      setUser(response.data.user)
-    
-   
+      // setUser(response.data.user)
+      // setLocal(response.data.user)
+      let userData = response.data.user
+      localStorage.setItem('user_data',JSON.stringify(userData))
 
         toast.success('Login successful!')
         navigate('/dashboard')
@@ -66,8 +68,12 @@ const AuthContext = ({ children }) => {
     
    }
    useEffect(() => {
+    if(JSON.parse(localStorage.getItem('user_data'))){
+      setUser(JSON.parse(localStorage.getItem('user_data')))
+    }
     if (user) {
       console.log("User Data ", user);
+      // console.log(local)
     }
   }, [user]);
   
