@@ -47,3 +47,4 @@ app.use((err, req, res, next) => {
 // npm i dotenv
 // npm i bcryptjs
 // npm i jsonwebtoken
+// npm install cors
