@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -18,17 +18,17 @@ const AuthContext = ({ children }) => {
     try {
       // console.log(data)
       const response = await axios.post('/backend/auth/signin',data);
-      console.log(response)
+      // console.log(response)
       setIsAuthenticated(true)
-      setUser(response)
-      // console.log(user)
+      setUser(response.data.user)
+    
    
 
         toast.success('Login successful!')
         navigate('/dashboard')
       
     } catch (err) {
-      console.log(err.response)
+      // console.log(err.response)
       setMessage(err.response?.data?.message || "SignIn Failed")
       toast.error(err.response?.data?.message || "SignIn Failed")
     }
@@ -43,14 +43,14 @@ const AuthContext = ({ children }) => {
     try {
       
       const response = await axios.post("/backend/auth/signup", data);
-      
+       
       
         // toast.success(response.data.message)
         toast.success("Signup successful! Please log in.");
         navigate('/login')
       
     } catch (err) {
-      console.log(err.response.data.message)
+      // console.log(err.response.data.message)
       setMessage(err.response?.data?.message || "Signup failed");
       toast.error(err.response?.data?.message || "Signup failed")
     } finally {
@@ -65,7 +65,12 @@ const AuthContext = ({ children }) => {
     navigate('/');
     
    }
-
+   useEffect(() => {
+    if (user) {
+      console.log("User Data ", user);
+    }
+  }, [user]);
+  
   return (
     <UserAuthContext.Provider
       value={{ isAuthenticated, user,callLogOut, callSignUpApi, callLoginApi ,loading, message }}

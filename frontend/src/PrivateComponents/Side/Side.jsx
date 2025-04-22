@@ -10,7 +10,7 @@ import { UserAuthContext } from "../../Contexts/AuthContext";
 const Side = () => {
   let location = useLocation();
   const [active,setActive] = useState('dashboard')
-  let {callLogOut} = useContext(UserAuthContext)
+  let {callLogOut,user} = useContext(UserAuthContext)
   useEffect(()=>{
      if(location.pathname.includes('dashboard')){
        setActive('dashboard')
@@ -18,6 +18,12 @@ const Side = () => {
      else if(location.pathname.includes('messages')){
         setActive('messages')
      }
+     else if(location.pathname.includes('f-job')){
+      setActive('f-job')
+   }
+   else if(location.pathname.includes('my-profile')){
+    setActive('my-profile')
+ }
      console.log('object')
   },[location])
   return (
@@ -31,7 +37,7 @@ const Side = () => {
       </Link>
       <div className="lg:flex hidden flex-col h-[94%]">
         <ul className="mt-10 flex flex-col justify-center gap-2">
-          <li className={`${active=='dashboard'?'bg-blue-300':''} rounded-xl border `}>
+          <li className={`${active=='dashboard'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             
             <Link
               to={"/dashboard"}
@@ -41,7 +47,7 @@ const Side = () => {
               <span className="">Dashboard</span>
             </Link>
           </li>
-          <li className={`${active=='messages'?'bg-blue-300':''} rounded-xl border `}>
+          <li className={`${active=='messages'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link
               to={"/messages"}
               className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
@@ -51,7 +57,7 @@ const Side = () => {
               <span className="">Messages</span>
             </Link>
           </li>
-          <li className="bg-amber-600  rounded-xl  ">
+          <li className={`${active=='f-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link
               to={"/f-job"}
               className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
@@ -61,7 +67,7 @@ const Side = () => {
               <span className="">Find Jobs</span>
             </Link>
           </li>
-          <li className="bg-amber-600  rounded-xl   ">
+          <li className={`${active=='my-profile'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link
               to={"/my-profile"}
               className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
@@ -73,14 +79,14 @@ const Side = () => {
           </li>
         </ul>
         <ul className="mt-auto flex gap-2 flex-col">
-          <li className="bg-amber-600 rounded-xl  ">
+          <li className={`${active=='logout'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg  transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl dash-log-out border-[1px] border-gray-100 `}>
             <button className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
               <IoIosLogOut className="text-[18px]" />
               <span className="">Log Out</span>
               
             </button>
           </li>
-          <li className="bg-amber-600  rounded-xl ">
+          <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
               <IoIosLogOut className="text-[18px]" />
               <div className="">
@@ -95,7 +101,7 @@ const Side = () => {
       {/* For Smaller than large screen with tooltip component */}
       <div className="flex lg:hidden flex-col h-[94%] mt-3">
         <ul className="mt-10 flex flex-col justify-center gap-2">
-          <li className="bg-amber-600  lg:rounded-xl rounded-full ">
+          <li className={`${active=='dashboard'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
             <Tooltip content="Dashboard" placement="right">
             <Link
               to={"/dashboard"}
@@ -105,7 +111,7 @@ const Side = () => {
               <span className="hidden lg:block">Dashboard</span>
             </Link></Tooltip>
           </li>
-          <li className="bg-amber-600  lg:rounded-xl rounded-full ">
+          <li className={`${active=='messages'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
           <Tooltip content="Messages" placement="right">
             <Link
               to={"/messages"}
@@ -117,7 +123,7 @@ const Side = () => {
             </Link>
             </Tooltip>
           </li>
-          <li className="bg-amber-600  lg:rounded-xl rounded-full  ">
+          <li className={`${active=='f-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
           <Tooltip content="Jobs" placement="right">
             <Link
               to={"/f-job"}
@@ -129,7 +135,7 @@ const Side = () => {
             </Link>
             </Tooltip>
           </li>
-          <li className="bg-amber-600  lg:rounded-xl rounded-full  ">
+          <li className={`${active=='my-profile'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
           <Tooltip content="Profile" placement="right">
             <Link
               to={"/my-profile"}
@@ -143,7 +149,7 @@ const Side = () => {
           </li>
         </ul>
         <ul className="mt-auto flex gap-2 flex-col">
-          <li className="bg-amber-600 lg:rounded-xl rounded-full ">
+          <li className={`${active=='logout'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform    text-white text-lg font-medium':'inset-box-shadow'} rounded-full dash-log-out lg:rounded-xl border-[1px] border-gray-100 `}>
           <Tooltip content="Logout" placement="right">
             <button className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
               <IoIosLogOut className="text-[18px]" />
@@ -152,7 +158,7 @@ const Side = () => {
             </button>
             </Tooltip>
           </li>
-          <li className="bg-amber-600  lg:rounded-xl rounded-full  ">
+          <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
             <Tooltip content={`Username`} placement="right">
             <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
               <IoIosLogOut className="text-[18px]" />

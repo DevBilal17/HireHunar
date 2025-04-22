@@ -32,10 +32,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/find-jobs" element={<FindJobs />} />
         {/* Private Routes When user logged In */}
         <Route element={<PrivateRoute />}>
-          <Route path="/find-jobs" element={<FindJobs />} />
+         
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/f-job" element={<FindJ />} />

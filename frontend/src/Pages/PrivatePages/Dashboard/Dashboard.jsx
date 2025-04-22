@@ -10,11 +10,12 @@ import DashNav from "../../../PrivateComponents/DashNav/DashNav";
 const Dashboard = () => {
   return (
     <div className="flex">
-     <Side/>
-     <div className='w-full flex flex-col'>
-        <DashNav title={'Dashboard'} />
-     </div>
-</div>
+      <Side />
+      <div className="w-full flex flex-col ">
+        <DashNav title={"Dashboard"} />
+        
+      </div>
+    </div>
   );
 };
 

@@ -7,12 +7,12 @@ const FindJ = () => {
   return (
     <div className="flex max-w-[1550px] mx-auto">
       <Side />
-      <div className='w-full flex flex-col overflow-x-hidden'>
-        <DashNav title={'Find Jobs'} />
-        <div className=" h-full max-w-[1200px] mx-auto   px-6 py-7">
-           <FindJobs/>
+      <div className="w-full flex flex-col">
+        <DashNav title={"Find Jobs"} />
+        <div className=" h-full max-w-[1500px] w-full mx-auto   px-6 py-7">
+          <FindJobs />
         </div>
-     </div>
+      </div>
     </div>
   );
 };
