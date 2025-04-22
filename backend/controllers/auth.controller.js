@@ -3,8 +3,15 @@ import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+// signup api
+
 export const signup = async (req, res, next) => {
   const { userType, name, email, password } = req.body;
+
+  const validUser = await User.findOne({ email });
+  if (validUser) {
+    return next(errorHandler(409, "User already exists!"));
+  }
 
   if (
     !userType ||
@@ -16,7 +23,11 @@ export const signup = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    next(errorHandler(400, "All fields are required!"));
+    return next(errorHandler(400, "All fields are required!"));
+  }
+
+  if (userType !== "jobseeker" && userType !== "company") {
+    return next(errorHandler(400, "Invalid usertype!"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -30,11 +41,24 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.json("Signup is successful!");
+    res.json({ message: "Signup is successful!" });
   } catch (error) {
+    if (error.code === 11000 && error.keyPattern?.email) {
+      return next(errorHandler(400, "Email is already registered!"));
+    }
+
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors)
+        .map((val) => val.message)
+        .join(", ");
+      return next(errorHandler(400, messages));
+    }
+
     next(error);
   }
 };
+
+// signin api
 
 export const signin = async (req, res, next) => {
   const { userType, email, password } = req.body;
@@ -47,7 +71,7 @@ export const signin = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    next(errorHandler(400, "All fields are required!"));
+    return next(errorHandler(400, "All fields are required!"));
   }
 
   try {
@@ -78,6 +102,17 @@ export const signin = async (req, res, next) => {
       })
       .json(rest);
   } catch (error) {
+    if (error.name === "CastError") {
+      return next(errorHandler(400, "Invalid data format!"));
+    }
+
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors)
+        .map((val) => val.message)
+        .join(", ");
+      return next(errorHandler(400, messages));
+    }
+
     next(error);
   }
 };
