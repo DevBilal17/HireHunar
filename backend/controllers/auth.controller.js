@@ -113,6 +113,7 @@ export const signin = async (req, res, next) => {
       _id: validUser._id,
       ...rest,
     };
+    console.log(safeUser)
     res
       .status(200)
       .cookie("access_token", token, {

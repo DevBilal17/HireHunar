@@ -82,7 +82,7 @@ const AuthContext = ({ children }) => {
   console.log(user)
   return (
     <UserAuthContext.Provider
-      value={{ user,callLogOut, callSignUpApi, callLoginApi ,loading, message }}
+      value={{ user,callLogOut,setLoading, callSignUpApi, callLoginApi ,loading, message }}
     >
       {children}
     </UserAuthContext.Provider>

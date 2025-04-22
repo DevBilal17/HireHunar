@@ -1,24 +1,31 @@
-import React, {  createContext, useContext, useEffect } from 'react'
+import React, {  createContext, useContext, useEffect, useState } from 'react'
 import { UserAuthContext } from './AuthContext';
 import axios from 'axios';
 
 
-const ApiUserData = createContext();
+export const ApiUserData = createContext();
 
 const ApiContext = ({children}) => {
     let {setLoading,user} = useContext(UserAuthContext);
+    const [profile,setProfile] = useState(null)
     useEffect(()=>{
         if(user){
-            let {} = user
-            // fetchUserDataById()
+            let id = user._id
+            
+            fetchUserDataById(id)
+
+            
         }
+        
+        
     },[])
 
     const fetchUserDataById = async (userID)=>{
         setLoading(true);
         try {
-            let response = await axios.post(`/backend/user/getUserById/${userID}`);
-            console.log( "Fetched USer Data By ID " +  response)
+            let response = await axios.get(`/backend/user/getUserById/${userID}`);
+            // console.log(response.data)
+            setProfile(response.data.data)
         } catch (err) {
             console.log(err.response)
         }
@@ -26,8 +33,9 @@ const ApiContext = ({children}) => {
             setLoading(false)
         }
     }
+    console.log(profile)
   return (
-    <ApiUserData.Provider value={''}>
+    <ApiUserData.Provider value={{profile}}>
       {children}
     </ApiUserData.Provider>
   )
