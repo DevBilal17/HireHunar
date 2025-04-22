@@ -26,7 +26,7 @@ const App = () => {
     );
   }, [location]);
   return (
-    <div className={`max-w-[1550px] ${!url && "px-[20px]"} mx-auto`}>
+    <div className={`max-w-full ${!url && "px-[20px]"} mx-auto`}>
       <HomeNavbar className={`${url && "hide"}`} />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -88,10 +88,12 @@ const Side = () => {
           </li>
           <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
-              <IoIosLogOut className="text-[18px]" />
+              <div className="h-[50px] w-[50px] rounded-full overflow-hidden flex items-center justify-center">
+              <img src={user.profilePicture} alt="" className="" />
+              </div>
               <div className="">
-                <h4 className="font-medium text-[15px]">UserName</h4>
-                <p className="text-gray-600 text-[12px]">Email</p>
+                <h4 className="font-medium text-[15px]">{user.name}</h4>
+                <p className="text-gray-600 text-[12px]">{user.email}</p>
               </div>
             </Link>
           </li>
@@ -105,7 +107,7 @@ const Side = () => {
             <Tooltip content="Dashboard" placement="right">
             <Link
               to={"/dashboard"}
-              className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
+              className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
             >
               <MdOutlineDashboard className="text-[20px]" />
               <span className="hidden lg:block">Dashboard</span>
@@ -115,9 +117,9 @@ const Side = () => {
           <Tooltip content="Messages" placement="right">
             <Link
               to={"/messages"}
-              className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
+              className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
             >
-              <MdOutlineMessage className="text-[18px]" />
+              <MdOutlineMessage className="text-[20px]" />
               
               <span className="hidden lg:block">Messages</span>
             </Link>
@@ -127,7 +129,7 @@ const Side = () => {
           <Tooltip content="Jobs" placement="right">
             <Link
               to={"/f-job"}
-              className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
+              className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
             >
               <CiSearch className="text-[20px]" />
               
@@ -139,9 +141,9 @@ const Side = () => {
           <Tooltip content="Profile" placement="right">
             <Link
               to={"/my-profile"}
-              className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
+              className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
             >
-              <FaRegUser className="text-[18px]" />
+              <FaRegUser className="text-[20px]" />
               <span className="hidden lg:block">My Public Profile</span>
               
             </Link>
@@ -151,7 +153,7 @@ const Side = () => {
         <ul className="mt-auto flex gap-2 flex-col">
           <li className={`${active=='logout'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform    text-white text-lg font-medium':'inset-box-shadow'} rounded-full dash-log-out lg:rounded-xl border-[1px] border-gray-100 `}>
           <Tooltip content="Logout" placement="right">
-            <button className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
+            <button className="flex  py-4.5 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]" onClick={callLogOut}>
               <IoIosLogOut className="text-[18px]" />
               <span className="hidden lg:block">Log Out</span>
               
@@ -159,9 +161,11 @@ const Side = () => {
             </Tooltip>
           </li>
           <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
-            <Tooltip content={`Username`} placement="right">
-            <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
-              <IoIosLogOut className="text-[18px]" />
+            <Tooltip content={user.name} placement="right">
+            <Link className="flex  py-0.5 items-center  px-0.5 gap-2.5  cursor-pointer  text-[16px]">
+            <div className="h-[50px] flex items-center justify-center w-[50px] rounded-full overflow-hidden">
+              <img src={user.profilePicture} alt="" className="" />
+              </div>
               <div className="hidden lg:block">
                 <h4 className="font-medium text-[15px]">UserName</h4>
                 <p className="text-gray-600 text-[12px]">Email</p>

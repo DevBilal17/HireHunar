@@ -5,7 +5,7 @@ import  { UserAuthContext } from "../../Contexts/AuthContext";
 
 
 const HomeNavbar = ({className}) => {
-  let {isAuthenticated,callLogOut} = useContext(UserAuthContext)
+  let {user,callLogOut} = useContext(UserAuthContext)
   return (
     <nav className={`w-full h-[70px] flex items-center justify-between ${className=='hide'&&'hidden'}`}>
       <Link to={'/'}>
@@ -26,7 +26,7 @@ const HomeNavbar = ({className}) => {
         </li>
       </ul>
       {
-        !isAuthenticated ? <div className="nav-btns flex gap-4">
+        !user ? <div className="nav-btns flex gap-4">
         <Link
           to={"/login"}
           className="px-6 py-2.5  cursor-pointer rounded-4xl hover:bg-black transition-all hover:text-white"

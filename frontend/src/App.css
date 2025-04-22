@@ -128,9 +128,32 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
 .custom-gradient {
   background: linear-gradient(to right, #22d3ee, #3b82f6); /* From cyan-400 to blue-500 */
 }
+
+
 .inset-box-shadow {
   box-shadow: inset 0px 4px 6px rgba(128, 128, 128, 0.1); /* Gray shadow */
 }
+
+
+
+.btn-linear-border{
+   /* Gradient for border */
+   background: linear-gradient(to right, #22d3ee, #3b82f6);
+   background-origin: border-box;
+   background-clip: border-box;
+ 
+   /* Ensures the gradient is only visible on the border */
+   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+   -webkit-mask-composite: destination-out;
+   mask-composite: exclude;
+ 
+   /* Gradient for text */
+   color: transparent;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+
 
 
 .dash-log-out{
