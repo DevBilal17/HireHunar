@@ -71,15 +71,35 @@ const userSchema = new mongoose.Schema(
         default:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEHGJUumpyKnKS8ZFVqAsplrqgvkLGxNk8Xg&s",
       },
+
       // isAdmin: {
       //   type: Boolean,
       //   default: false,
       // },
+
+      // for jobseeker
       aboutMe: {
         type: String,
         default: "",
       },
       phoneNo: {
+        type: String,
+        default: "",
+      },
+      // for company
+      industry: {
+        type: String,
+        default: "",
+      },
+      // for company
+      aboutCompany: {
+        companyDescription: { type: String, default: "" },
+        yearFounded: { type: String, default: "" },
+        companySize: { type: Number, default: 0 },
+        companyType: { type: String, default: "" }, // private, public, startup etc.
+      },
+      // for company
+      websiteLink: {
         type: String,
         default: "",
       },
@@ -92,13 +112,13 @@ const userSchema = new mongoose.Schema(
       country: { type: String, default: "" },
     },
 
-    // 3. Skills
+    // 3. Skills only for jobseeker
     skills: {
       type: [String], // Example: ['JavaScript', 'Node.js', 'MongoDB']
       default: [],
     },
 
-    // 4. Education
+    // 4. Education only for jobseeker
     education: [
       {
         degree: String,
@@ -109,7 +129,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 5. Experience
+    // 5. Experience only for jobseeker
     experience: [
       {
         jobTitle: String,
@@ -120,7 +140,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 6. Projects
+    // 6. Projects only for jobseeker
     projects: [
       {
         projectName: String,
@@ -129,7 +149,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 7. Documents
+    // 7. Documents only for jobseeker
     documents: [
       {
         docName: String,
@@ -145,6 +165,46 @@ const userSchema = new mongoose.Schema(
         url: String,
       },
     ],
+
+    // 9. Services/Products only for company
+    services: [
+      {
+        serviceName: String, // any specific service or product
+        url: String,
+      },
+    ],
+
+    // 10. gallery only for company
+    gallery: {
+      type: [String],
+      default: [],
+    },
+
+    // team only for company
+    team: [
+      {
+        name: String,
+        position: String, // CEO, HR manager, etc.
+        profileLink: String, // like linkedin profile link
+      },
+    ],
+
+    // jobs listed only for company
+    jobs: [
+      {
+        jobTitle: String,
+        jobType: String, // full-time, part-time etc.
+        location: String, // remote, onsite etc.
+        postedDate: String,
+        link: String,
+      },
+    ],
+
+    // company statistics only for company
+    companyStatistics: {
+      totalJobsPosted: Number,
+      totalHires: Number,
+    },
   },
   { timestamps: true }
 );
