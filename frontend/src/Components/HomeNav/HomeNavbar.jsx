@@ -9,12 +9,12 @@ const HomeNavbar = ({className}) => {
   return (
     <nav className={`w-full h-[70px] flex items-center justify-between ${className=='hide'&&'hidden'}`}>
       <Link to={'/'}>
-        <h3 className="brand font-semibold text-[25px]">
+        <h3 className="brand font-semibold md:text-[25px] text-[20px]">
           <img src="" alt="" className="logo" />
           HireHunar
         </h3>
       </Link>
-      <ul className="nav-list md:flex hidden items-center gap-6 font-normal ">
+      {/* <ul className="nav-list md:flex hidden items-center gap-2 md:gap-6 font-normal ">
         <li className="nav-item">
           <Link to={'/find-jobs'}>Find a Job</Link>
         </li>
@@ -24,26 +24,26 @@ const HomeNavbar = ({className}) => {
         <li className="nav-item">
           <Link>Contact</Link>
         </li>
-      </ul>
+      </ul> */}
       {
-        !user ? <div className="nav-btns flex gap-4">
+        !user ? <div className="nav-btns flex items-center md:gap-4 sm:gap-2 gap-1">
         <Link
           to={"/login"}
-          className="px-6 py-2.5  cursor-pointer rounded-4xl hover:bg-black transition-all hover:text-white"
+          className="md:px-6 px-2.5 md:py-2.5 py-1.5   text-sm md:text-[16px] cursor-pointer rounded-4xl hover:bg-black transition-all hover:text-white"
         >
           Login
         </Link>
-        <Link to={'/register'} className="px-6 py-2.5 bg-black text-white cursor-pointer rounded-4xl">
+        <Link to={'/register'} className="md:px-6 px-2.5 md:py-2.5 py-1.5   text-sm md:text-[16px] bg-black text-white cursor-pointer rounded-4xl">
           SignUp
         </Link>
       </div> : <div className="nav-btns flex gap-4">
         <Link
           to={"/dashboard"}
-          className="px-6 py-2.5  cursor-pointer rounded-4xl hover:bg-black transition-all hover:text-white"
+          className="md:px-6 px-2.5 md:py-2.5 py-1.5   text-sm md:text-[16px]  cursor-pointer rounded-4xl hover:bg-black transition-all hover:text-white"
         >
           Dashboard
         </Link>
-        <button onClick={callLogOut} className="px-6 py-2.5 bg-black text-white cursor-pointer rounded-4xl">
+        <button onClick={callLogOut} className="md:px-6 px-2.5 md:py-2.5 py-1.5   text-sm md:text-[16px] bg-black text-white cursor-pointer rounded-4xl">
           Logout
         </button>
       </div>

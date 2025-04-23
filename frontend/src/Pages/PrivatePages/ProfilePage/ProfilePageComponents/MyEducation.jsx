@@ -2,9 +2,7 @@ import React from 'react'
 
 const MyEducation = ({profile}) => {
   let education = profile.education;
-  education.forEach((element) => {
-    console.log(element);
-  });
+
   return (
     <div className="min-h-fit relative w-full p-5 border border-gray-300 profileImageSection ">
       <h2 className="text-xl font-semibold">Education</h2>

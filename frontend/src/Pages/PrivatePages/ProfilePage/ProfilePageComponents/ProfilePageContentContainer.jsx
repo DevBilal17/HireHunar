@@ -5,6 +5,8 @@ import MyExperienceSection from './MyExperienceSection'
 import { ApiUserData } from '../../../../Contexts/ApiContext'
 import MyEducation from './MyEducation'
 import MySkillsSection from './MySkillsSection'
+import MyPortfolioSection from './MyPortfolioSection'
+import AdditionalInformation from './AdditionalInformation'
 
 const ProfilePageContentContainer = () => {
   const {profile} = useContext(ApiUserData)
@@ -15,9 +17,13 @@ const ProfilePageContentContainer = () => {
         <AboutMe profile={profile}/>
         <MyExperienceSection profile={profile}/>
         <MyEducation profile={profile}/>
-        <MySkillsSection profile={profile} />
+        
+        <MyPortfolioSection profile={profile}/>
       </div>
-      <div className='right bg-red-500 lg:w-[30%] w-full  h-full flex flex-col gap-10' ></div>
+      <div className='right  lg:w-[30%] w-full  h-full flex flex-col gap-10' >
+      <MySkillsSection profile={profile} />
+        <AdditionalInformation profile={profile}/>
+      </div>
     </div>
   )
 }

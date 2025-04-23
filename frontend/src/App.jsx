@@ -14,6 +14,9 @@ import FindJ from "./Pages/PrivatePages/FindJobs/FindJ";
 import ProfilePage from "./Pages/PrivatePages/ProfilePage/ProfilePage";
 import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./PrivateComponents/PrivateRoute/PrivateRoute";
+import PostJobs from "./Pages/PrivatePages/CompanyPages/PostJobs";
+import CompanyProfile from "./Pages/PrivatePages/CompanyPages/CompanyProfile";
+import AllJobs from "./Pages/PrivatePages/CompanyPages/AllJobs";
 const App = () => {
   const [url, setUrl] = useState(false);
   let location = useLocation();
@@ -22,11 +25,14 @@ const App = () => {
       location.pathname.includes("dashboard") ||
         location.pathname.includes("messages") ||
         location.pathname.includes("f-job") ||
-        location.pathname.includes("my-profile")
+        location.pathname.includes("my-profile") || 
+        location.pathname.includes('all-jobs') ||
+        location.pathname.includes('post-job')||
+        location.pathname.includes('company-profile')
     );
   }, [location]);
   return (
-    <div className={`max-w-full ${!url && "px-[20px]"} mx-auto`}>
+    <div className={`max-w-full ${!url && "sm:px-[20px] px-[10px]"} mx-auto`}>
       <HomeNavbar className={`${url && "hide"}`} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -40,6 +46,11 @@ const App = () => {
           <Route path="/messages" element={<Messages />} />
           <Route path="/f-job" element={<FindJ />} />
           <Route path="/my-profile" element={<ProfilePage />} />
+
+
+          <Route path="/post-job" element={<PostJobs/>} />
+          <Route path="/company-profile" element={<CompanyProfile/>} />
+          <Route path= '/all-jobs' element={<AllJobs/>} />
         </Route>
       </Routes>
       <Footer className={`${url && "hide"}`} />
