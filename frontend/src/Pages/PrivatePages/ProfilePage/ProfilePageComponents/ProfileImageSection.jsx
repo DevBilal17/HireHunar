@@ -3,8 +3,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import  { UserAuthContext } from "../../../../Contexts/AuthContext";
 import { ApiUserData } from "../../../../Contexts/ApiContext";
-const ProfileImageSection = () => {
-    const {profile} = useContext(ApiUserData)
+const ProfileImageSection = ({profile}) => {
+    
   return (
     <div className="min-h-[300px] relative w-full border border-gray-300 profileImageSection ">
       <div className="cover h-[140px] ">

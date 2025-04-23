@@ -8,13 +8,13 @@ const ApiContext = ({ children }) => {
   let { setLoading, user } = useContext(UserAuthContext);
   const [profile, setProfile] = useState(() => {
     // Load profile from localStorage on initialization
-    const savedProfile = localStorage.getItem('profile');
+    const savedProfile = localStorage.getItem("profile");
     return savedProfile ? JSON.parse(savedProfile) : null;
   });
   useEffect(() => {
     if (user && user._id) {
-        fetchUserDataById(user._id);
-      }
+      fetchUserDataById(user._id);
+    }
   }, [user]);
 
   const fetchUserDataById = async (userID) => {
