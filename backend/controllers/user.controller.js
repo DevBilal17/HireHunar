@@ -93,3 +93,6 @@ export const getUserById = async (req, res, next) => {
     );
   }
 };
+
+// PUT: /backend/user/updateUser/:userId (update user)
+export const updateUser = async (req, res, next) => {};

@@ -108,7 +108,11 @@ export const signin = async (req, res, next) => {
       },
       process.env.JWT_SECRET
     );
-    const { "personalInfo.password": pass, ...rest } = validUser._doc;
+    const { password: pass, ...rest } = validUser._doc.personalInfo;
+    const safeUser = {
+      _id: validUser._id,
+      ...rest,
+    };
     res
       .status(200)
       .cookie("access_token", token, {
@@ -116,7 +120,7 @@ export const signin = async (req, res, next) => {
       })
       .json({
         message: "Signin is successful",
-        user: [{ _id: validUser._id, ...rest.personalInfo }],
+        user: safeUser,
       });
   } catch (error) {
     if (error.name === "CastError") {
