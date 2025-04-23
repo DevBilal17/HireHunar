@@ -255,3 +255,16 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
       transform: scaleX(1);
   }
 }
+
+
+@media (max-width:760px) {
+  .profileImageSection .content .profileImg{
+      left: 35%;
+      top: 25%;
+  }
+  .profileImageSection .content .profileInfo{
+      margin-top: 70px;
+      margin-left: 20px;
+      padding: 20px 7px;
+  }
+}

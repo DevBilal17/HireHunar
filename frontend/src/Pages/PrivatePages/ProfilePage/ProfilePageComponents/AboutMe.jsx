@@ -2,9 +2,10 @@ import React from 'react'
 
 const AboutMe = () => {
   return (
-    <div>
-      
-    </div>
+   <div className="min-h-fit relative w-full border border-gray-300 profileImageSection ">
+         
+         
+       </div>
   )
 }
 
