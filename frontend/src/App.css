@@ -5,6 +5,7 @@ html{
 }
 body{
   /* padding: 0 20px; */
+  overflow-x: hidden;
 }
 /* Style the scrollbar track */
 .home::-webkit-scrollbar {
@@ -27,24 +28,26 @@ body{
 }
 
 /* Style the scrollbar track */
-::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-}
+/* ::-webkit-scrollbar {
+  width: 10px; 
+} */
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track background color */
-}
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+} */
 
 /* Style the scrollbar thumb */
-::-webkit-scrollbar-thumb {
+
+/* ::-webkit-scrollbar-thumb {
   background: linear-gradient(45deg, #e771b4, #ff85a1, #fd7ba7);
-  border-radius: 10px; /* Makes the thumb rounded */
-}
+  border-radius: 10px; 
+} */
 
 /* Optional: Hover effect on the scrollbar thumb */
-::-webkit-scrollbar-thumb:hover {
+
+/* ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #d4619e, #ff7793, #fc6d99);
-}
+} */
 
 
 .bgLinear{

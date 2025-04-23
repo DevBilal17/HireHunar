@@ -40,7 +40,7 @@ else if(location.pathname.includes('all-jobs')){
   },[location])
   return (
     <>
-    <section className=" transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full  h-[100vh]  lg:p-5 py-5 px-3 s sticky z-20 bg-white left-0 top-0 ">
+    <section className=" transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full  h-screen   lg:p-5 py-5 px-3 s fixed z-20 bg-white left-0 top-0 ">
       <Link to={"/"}>
         <h3 className="brand font-semibold text-[25px] hidden lg:block">
           <img src="" alt="" className="logo" />
@@ -80,14 +80,14 @@ else if(location.pathname.includes('all-jobs')){
               <span className="">Find Jobs</span>
             </Link>
           </li> 
-          :<li className={`${active=='post-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
+          :<li className={`${active=='all-jobs'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link
-              to={"/post-job"}
+              to={"/all-jobs"}
               className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
             >
               <BsFilePost className="text-[20px]" />
               
-              <span className="">Post Jobs</span>
+              <span className="">All Jobs</span>
             </Link>
           </li>
           }
@@ -176,10 +176,10 @@ else if(location.pathname.includes('all-jobs')){
               </Link>
               </Tooltip>
             </li>: 
-            <li className={`${active=='post-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
-            <Tooltip content="Post Jobs" placement="right">
+            <li className={`${active=='all-jobs'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
+            <Tooltip content="All Jobs" placement="right">
               <Link
-                to={"/post-job"}
+                to={"/all-jobs"}
                 className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
               >
                 <BsFilePost className="text-[20px]" />

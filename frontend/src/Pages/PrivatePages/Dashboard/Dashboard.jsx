@@ -7,13 +7,16 @@ import { Link, useLocation } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import Side from "../../../PrivateComponents/Side/Side";
 import DashNav from "../../../PrivateComponents/DashNav/DashNav";
+import DashComp from "../UserDashboardComponents/DashComp";
 const Dashboard = () => {
   return (
     <div className="flex">
       <Side />
-      <div className="w-full flex flex-col ">
+      <div className="w-full  flex flex-col flex-1 ml-[80px] lg:ml-[250px] ">
         <DashNav title={"Dashboard"} />
-        
+        <div className="h-full  w-full mx-auto  bg-gray-100  py-7">
+          <DashComp/>
+        </div>
       </div>
     </div>
   );
