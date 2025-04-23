@@ -20,24 +20,39 @@ export const signup = async (req, res, next) => {
   ) {
     next(errorHandler(400, "All fields are required!"));
   }
-  // Check if email already exists
-  //  const existingUser = await User.findOne({ email });
-  //  if (existingUser) {
-  //    return next(errorHandler(400, "Email is already in use!"));
-  //  }
+
+  const existingUser = await User.findOne({ "personalInfo.email": email });
+  console.log(existingUser);
+  if (existingUser) {
+    return next(errorHandler(400, "Email already exists"));
+  }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
-    userType,
-    name,
-    email,
-    password: hashedPassword,
+    personalInfo: {
+      userType,
+      name,
+      email,
+      password: hashedPassword,
+    },
   });
 
   try {
     await newUser.save();
-    res.json({ message: "Signup is successful!" });
+
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        _id: newUser._id,
+        personalInfo: {
+          name: newUser.personalInfo.name,
+          email: newUser.personalInfo.email,
+          userType: newUser.personalInfo.userType,
+          profilePicture: newUser.personalInfo.profilePicture,
+        },
+      },
+    });
   } catch (error) {
     if (error.code === 11000 && error.keyPattern?.email) {
       return next(errorHandler(400, "Email is already registered!"));
@@ -71,26 +86,29 @@ export const signin = async (req, res, next) => {
   }
 
   try {
-    const validUser = await User.findOne({ email });
+    const validUser = await User.findOne({ "personalInfo.email": email });
     if (!validUser) {
       return next(errorHandler(404, "User not found!"));
     }
-    const validPassword = bcryptjs.compareSync(password, validUser.password);
+    const validPassword = bcryptjs.compareSync(
+      password,
+      validUser.personalInfo.password
+    );
     if (!validPassword) {
       return next(errorHandler(400, "Invalid password!"));
     }
-    if (validUser.userType !== req.body.userType) {
+    if (validUser.personalInfo.userType !== req.body.userType) {
       return next(errorHandler(400, "Invalid usertype!"));
     }
     const token = jwt.sign(
       {
         id: validUser._id,
-        userType: validUser.userType,
-        isAdmin: validUser.isAdmin,
+        userType: validUser.personalInfo.userType,
+        // isAdmin: validUser.isAdmin,
       },
       process.env.JWT_SECRET
     );
-    const { password: pass, ...rest } = validUser._doc;
+    const { "personalInfo.password": pass, ...rest } = validUser._doc;
     res
       .status(200)
       .cookie("access_token", token, {
@@ -98,7 +116,7 @@ export const signin = async (req, res, next) => {
       })
       .json({
         message: "Signin is successful",
-        user: rest,
+        user: rest.personalInfo,
       });
   } catch (error) {
     if (error.name === "CastError") {
