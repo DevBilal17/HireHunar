@@ -54,7 +54,7 @@ export const signup = async (req, res, next) => {
       },
     });
   } catch (error) {
-    if (error.code === 11000 && error.keyPattern?.email) {
+    if (error.code === 11000 && error.keyPattern?.["personalInfo.email"]) {
       return next(errorHandler(400, "Email is already registered!"));
     }
 
@@ -116,7 +116,7 @@ export const signin = async (req, res, next) => {
       })
       .json({
         message: "Signin is successful",
-        user: rest.personalInfo,
+        user: [{ _id: validUser._id, ...rest.personalInfo }],
       });
   } catch (error) {
     if (error.name === "CastError") {

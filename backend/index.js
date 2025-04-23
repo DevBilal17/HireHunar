@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
-import cors from 'cors'
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
 dotenv.config();
 
 mongoose
@@ -18,11 +20,13 @@ mongoose
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
+app.use(cookieParser());
 
-app.get('/',(req,res)=>{
-  res.send('Hello')
-})
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
 app.listen(process.env.port, () => {
   console.log(`Server is running on port ${process.env.port}`);
 });
@@ -48,3 +52,4 @@ app.use((err, req, res, next) => {
 // npm i bcryptjs
 // npm i jsonwebtoken
 // npm install cors
+// npm i cookie-parser
