@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/f-job" element={<FindJ />} />
           <Route path="/my-profile" element={<ProfilePage />} />
 
-
+          
           <Route path="/post-job" element={<PostJobs/>} />
           <Route path="/company-profile" element={<CompanyProfile/>} />
           <Route path= '/all-jobs' element={<AllJobs/>} />

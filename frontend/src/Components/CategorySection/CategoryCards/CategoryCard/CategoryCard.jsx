@@ -15,7 +15,7 @@ const CategoryCard = ({
   posttime,
 }) => {
   return (
-    <div className=" max-w-[440px] w-full border-[1px] border-gray-200 rounded-2xl flex flex-col items-center py-3 bg-[#F8FAFB] hover:bg-[#FDE7E5] cursor-pointer mt-4 card">
+    <div className=" max-w-[440px] w-full border-[1px] border-gray-200 rounded-2xl flex flex-col items-center py-3 bg-[#F8FAFB] hover:bg-[#d9edff] cursor-pointer mt-4 card">
       <div className="max-w-[420px] w-full border-[1px] card-inside border-gray-200 transition-all duration-200 p-2 rounded-2xl bg-white">
         <div className="flex items-center justify-between ">
           <div className=" ]">

@@ -41,7 +41,7 @@ const Login = () => {
     // console.log(error)
   };
   return (
-    <div className="flex justify-between items-center w-full h-full bgLinear overflow-x-hidden rounded-[20px] sm:px-3 px-2">
+    <div className="flex justify-between items-center w-full h-full login overflow-x-hidden rounded-[20px] sm:px-3 px-2">
       <div className="hidden lg:block left w-[50%] pt-5 px-10">
         <div className="w-full flex items-center justify-center mt-[40px] relative">
           {/* Image Section */}
@@ -49,8 +49,8 @@ const Login = () => {
             <img src={loginImg} alt="" className="h-full object-contain" />
             {/* Stats Box */}
             <div className="absolute top-[20px] -left-[20px] xl:-left-[50px] bg-white shadow-md rounded-xl px-6 py-3 flex flex-col ">
-              <BsBarChartLineFill className="text-blue-600 text-5xl mb-2" />
-              <div className="text-indigo-600 font-bold text-xl">100K+</div>
+              <BsBarChartLineFill className="text-blue-500 text-5xl mb-2" />
+              <div className="text-blue-500 font-bold text-xl">100K+</div>
               <div className="text-gray-500 text-sm ">People got hired</div>
             </div>
 
@@ -70,7 +70,7 @@ const Login = () => {
                 />
               </div>
               <div className="flex">
-                <BsQuote className="text-7xl text-blue-600 h-full top-0 mx-2" />
+                <BsQuote className="text-7xl text-blue-500 p1 h-full top-0 mx-2" />
                 <p className=" flex text-md text-gray-700 italic">
                   “Great platform for the job seeker that searching for new
                   career heights.”
@@ -87,7 +87,7 @@ const Login = () => {
             <div className="choice w-full flex justify-center gap-1.5">
               <button
                 className={` ${
-                  choice == "jobseeker" && "bgLinearBtn text-white"
+                  choice == "jobseeker" && "custom-gradient text-white"
                 } cursor-pointer px-1.5 sm:px-3 text-sm sm:text-md py-2 border border-gray-300 `}
                 onClick={(event) => handleChoice("jobseeker", event)}
               >
@@ -95,7 +95,7 @@ const Login = () => {
               </button>
               <button
                 className={` ${
-                  choice == "company" && "bgLinearBtn text-white"
+                  choice == "company" && "custom-gradient text-white"
                 } cursor-pointer px-1.5 sm:px-3 text-sm sm:text-md py-2 border border-gray-300 `}
                 onClick={(event) => handleChoice("company", event)}
               >
@@ -138,7 +138,7 @@ const Login = () => {
               </Button>
               <span className="-mt-1 sm:mt-2  sm:text-sm text-xs mb-2">
                 Don't have an account?{" "}
-                <Link to={"/register"} className="textLinear font-semibold">
+                <Link to={"/register"} className="p1 font-semibold">
                   Sign Up
                 </Link>
               </span>

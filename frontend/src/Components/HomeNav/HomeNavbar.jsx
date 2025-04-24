@@ -9,8 +9,11 @@ const HomeNavbar = ({className}) => {
   return (
     <nav className={`w-full h-[70px] flex items-center justify-between ${className=='hide'&&'hidden'}`}>
       <Link to={'/'}>
-        <h3 className="brand font-semibold md:text-[25px] text-[20px]">
-          <img src="" alt="" className="logo" />
+        <h3 className="brand font-semibold md:text-[25px] text-[20px] flex gap-1.5 items-center">
+        <div className="w-6 h-6 rounded-full custom-gradient flex items-center justify-center font-bold text-white text-sm">
+              {/* Placeholder for logo */}
+              ✹
+            </div>
           HireHunar
         </h3>
       </Link>

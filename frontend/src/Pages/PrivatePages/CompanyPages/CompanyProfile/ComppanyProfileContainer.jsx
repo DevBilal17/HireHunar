@@ -11,7 +11,7 @@ const ComppanyProfileContainer = () => {
   return (
     <div className=" w-full h-full ">
       <InfoSection />
-      <div className="flex gap-10 lg:flex-row flex-col w-full h-fit">
+      <div className="flex gap-10 lg:flex-row flex-col w-full h-fit mt-8">
         <div className="left flex flex-col h-full gap-6 lg:w-[70%] w-full ">
           <CompanyAbout />
           <Contact />

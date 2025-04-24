@@ -7,9 +7,11 @@ const Messages = () => {
   return (
     <div className='flex '>
         <Side/>
-        <div className='w-full flex flex-col'>
+        <div className='w-full h-full  flex flex-col flex-1 ml-[80px] lg:ml-[250px]'>
         <DashNav title={'Messages'} />
+        <div className='  h-[calc(100vh-70px)] max-w-full w-full mx-auto'>
         <MessageComponent/>
+        </div>
      </div>
     </div>
   )

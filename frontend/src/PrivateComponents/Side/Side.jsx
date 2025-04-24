@@ -9,6 +9,7 @@ import { Tooltip } from "flowbite-react";
 import { FaRegBuilding } from "react-icons/fa";
 import { BsFilePost } from "react-icons/bs";
 import { UserAuthContext } from "../../Contexts/AuthContext";
+import { IoAddSharp } from "react-icons/io5";
 const Side = () => {
   let location = useLocation();
   const [active,setActive] = useState('dashboard')
@@ -70,6 +71,18 @@ else if(location.pathname.includes('all-jobs')){
             </Link>
           </li>
           {
+            userType=='company'&&<li className={`${active=='post-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
+            <Link
+              to={"/post-job"}
+              className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]"
+            >
+              <IoAddSharp className="text-[20px]" />
+              
+              <span className="">Post a Job</span>
+            </Link>
+          </li> 
+          }
+          {
             userType=='jobseeker'?<li className={`${active=='f-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
             <Link
               to={"/f-job"}
@@ -124,8 +137,8 @@ else if(location.pathname.includes('all-jobs')){
               
             </button>
           </li>
-          <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 `}>
-            <Link className="flex  py-4 items-center  px-5 gap-2.5  cursor-pointer  text-[16px]">
+          <li className={`${active=='p'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-xl border-[1px] border-gray-100 bg-gray-200`}>
+            <Link className="flex  py-4 items-center  px-5 gap-2.5   cursor-pointer  text-[16px]">
               <div className="h-[50px] w-[50px] rounded-full overflow-hidden flex items-center justify-center">
               <img src={user.profilePicture} alt="" className="" />
               </div>
@@ -163,6 +176,20 @@ else if(location.pathname.includes('all-jobs')){
             </Link>
             </Tooltip>
           </li>
+          {
+            userType=='company'&&<li className={`${active=='post-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full border-[1px] border-gray-100 `}>
+            <Tooltip content="Post Job" placement="right">
+            <Link
+              to={"/post-job"}
+              className="flex  py-4.5 items-center  px-4.5 gap-2.5  cursor-pointer  text-[16px]"
+            >
+              <IoAddSharp className="text-[20px]" />
+              
+              {/* <span className="">Post a Job</span> */}
+            </Link>
+            </Tooltip>
+          </li> 
+          }
           {
             userType == 'jobseeker' ? <li className={`${active=='f-job'?' custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white text-lg font-medium':'inset-box-shadow'} rounded-full lg:rounded-xl border-[1px] border-gray-100 `}>
             <Tooltip content="Jobs" placement="right">

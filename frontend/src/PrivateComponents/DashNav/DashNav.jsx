@@ -10,4 +10,4 @@ const DashNav = ({title}) => {
   )
 }
 
-export default DashNav
+export default React.memo(DashNav)

@@ -7,7 +7,7 @@ const FindJ = () => {
   return (
     <div className="flex max-w-full mx-auto">
       <Side />
-      <div className="w-full flex flex-col">
+      <div className="w-full flex flex-col flex-1 ml-[80px] lg:ml-[250px]">
         <DashNav title={"Find Jobs"} />
         <div className=" h-full max-w-full w-full mx-auto   px-6 py-7">
           <FindJobs />

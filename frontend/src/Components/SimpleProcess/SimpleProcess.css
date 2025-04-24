@@ -1,7 +1,7 @@
 .processCard::after{
   content: "";
   position: absolute;
-  height: 30%;
+  height: 28%;
   width: 1px;
   border-radius: 10px;
   background: #b1b1b193;
@@ -11,7 +11,7 @@
 .processCard.before::before{
     content: "";
   position: absolute;
-  height: 30%;
+  height: 28%;
   width: 1px;
   margin-left: 5px;
   border-radius: 10px;

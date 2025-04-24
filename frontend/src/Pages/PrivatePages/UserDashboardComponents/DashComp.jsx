@@ -43,7 +43,7 @@ const DashComp = () => {
     <div className="flex">
       {/* Main Content Area */}
       <div className=" flex flex-col w-full overflow-auto">
-        <main className="p-4 space-y-6">
+        <main className="md:p-4 p-3 space-y-6">
           {/* Total Jobs Applied and Interviewed Section */}
           <div className="flex md:flex-row flex-col gap-4">
             <div className="flex md:w-[50%]  w-full flex-col gap-3">
@@ -57,7 +57,7 @@ const DashComp = () => {
           </div>
 
           {/* Recent Applications History */}
-          <div className="bg-white p-6 rounded-2xl relative max-w-full  shadow-md sm:rounded-lg">
+          <div className="bg-white md:px-6 py-6 px-3 rounded-2xl relative max-w-full  shadow-md sm:rounded-lg">
             <h3 className="text-lg font-semibold mb-4">
               Recent Applications History
             </h3>

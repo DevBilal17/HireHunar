@@ -9,6 +9,7 @@ import userImg from "../../assets/Images/HeroSection/user.png";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import whiteWaves from "../../assets/Images/whiteWaves.png"
 import "./HeroSection.css";
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <div className="heroSection flex items-center justify-center p-5 relative max-w-[1500px] mx-auto overflow-hidden">
@@ -21,29 +22,29 @@ const HeroSection = () => {
           Search and find your dream job now eaiser than ever, you can simply
           browse and findd a job if you need it
         </p>
-        <form className="md:w-full w-[90%] flex items-center max-w-[520px]  pt-4 gap-2">
-          <div className="search bg-white rounded-4xl w-full relative overflow-hidden">
+        <div className="md:w-full w-[90%] flex items-center justify-center max-w-[520px]  pt-4 gap-2">
+          {/* <div className="search bg-white rounded-4xl w-full relative overflow-hidden">
             <input
               type="text"
               placeholder="Search for a job..."
               className="w-full px-5 text-[14px] border-none outline-0 py-3"
             />
             <CiSearch className="absolute right-2 top-[25%] text-[22px] text-[#666666]" />
-          </div>
-          <button className="px-8 py-3  bg-black text-white cursor-pointer rounded-4xl">
+          </div> */}
+          <a href="#jobDiscover" className="hover:scale-110 transition-all duration-150 px-8 py-3  bg-black text-white cursor-pointer rounded-4xl">
             Search
-          </button>
-        </form>
+          </a>
+        </div>
       </div>
       <div className="floating1 c-success flex items-center bg-white p-5 rounded-2xl">
-        <div className="icon h-[40px] w-[40px] rounded-full flex overflow-hidden items-center justify-center">
+        <div className="custom-gradient h-[40px] w-[40px] rounded-full flex overflow-hidden items-center justify-center">
           <img src={userImg} alt="" className="w-[32px]" />
         </div>
         <div className="flex flex-col justify-center ml-2">
           <div className="text-gray-600 text-[12px]">Customer Success</div>
           <div className="font-semibold relative flex items-center">
             7.89%{" "}
-            <span className="badge text-white text-[9px] px-1.5 py-0.5 rounded-2xl ml-2 flex items-center">
+            <span className="custom-gradient text-white text-[9px] px-1.5 py-0.5 rounded-2xl ml-2 flex items-center">
               50% <FaLongArrowAltUp />
             </span>
           </div>
@@ -51,15 +52,15 @@ const HeroSection = () => {
       </div>
       <div className="floating2 j absolute  left-[8%] bg-white max-w-[280px] h-[140px] w-full p-5 rounded-2xl">
         <div className="flex items-center gap-2 w-full">
-          <div className="icon h-[40px] w-[40px] rounded-full flex items-center justify-center">
+          <div className="custom-gradient h-[40px] w-[40px] rounded-full flex items-center justify-center">
             <FaReact className="i text-2xl text-white" />
           </div>
           <div className="pl-1  w-[80%]">
             <div className="j-post font-semibold flex items-center relative w-full">
               React Developer
-              <span className="save-logo absolute right-0">
-                <FaBookmark className="text-pink-500" />
-              </span>
+              {/* <span className="save-logo absolute right-0">
+                <FaBookmark className="textLinear" />
+              </span> */}
             </div>
             <div className="company font-normal text-gray-500 text-[13px]">
               Logico
@@ -91,31 +92,31 @@ const HeroSection = () => {
         <h3 className="font-semibold">The Top Categories</h3>
         <div className="h-[130px] flex  items-end justify-between">
           <div>
-            <div className="flex justify-center items-end text-[11px]  upper h-[80px] rounded-t-xl bg-[#fdded8] w-[40px]">
+            <div className="flex justify-center items-end text-[11px]  upper h-[80px] rounded-t-xl bg-[#CEF0F7] w-[40px]">
               70%
             </div>
             <div className="bottom text-[10px] text-center pt-2 text-gray-600">AI</div>
           </div>
           <div>
-            <div className="flex justify-center items-end text-[11px]  upper h-[60px] rounded-t-xl  bg-[#ffdbea] w-[40px]">
+            <div className="flex justify-center items-end text-[11px]  upper h-[60px] rounded-t-xl  bg-[#23CFEE] w-[40px]">
               60%
             </div>
             <div className="bottom text-[10px] text-center pt-2 text-gray-600">UI/UX</div>
           </div>
           <div>
-            <div className="flex justify-center items-end text-[11px]  upper h-[100px] rounded-t-xl g  w-[40px]">
+            <div className="flex justify-center items-end text-[11px]  upper h-[100px] rounded-t-xl custom-gradient  w-[40px]">
               90%
             </div>
             <div className="bottom text-[10px] text-center pt-2 text-gray-600">React</div>
           </div>
           <div>
-            <div className="flex justify-center items-end text-[11px]  upper h-[90px] rounded-t-xl bg-[#fbdfff]  w-[40px]">
+            <div className="flex justify-center items-end text-[11px]  upper h-[90px] rounded-t-xl bg-[#93abd8]  w-[40px]">
               80%
             </div>
             <div className="bottom text-[10px] text-center pt-2 text-gray-600">SQL</div>
           </div>
           <div>
-            <div className="flex justify-center items-end text-[11px]  upper h-[80px] rounded-t-xl bg-[#F3A6E2] w-[40px]">
+            <div className="flex justify-center items-end text-[11px]  upper h-[80px] rounded-t-xl bg-[#BDDDE4] w-[40px]">
               70%
             </div>
             <div className="bottom text-[10px] text-center pt-2 text-gray-600">Node</div>
@@ -123,7 +124,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="floating4 efficient flex bg-white p-5 items-center rounded-2xl absolute  ">
-        <div className="icon h-[40px] w-[40px] rounded-full flex items-center justify-center">
+        <div className="custom-gradient h-[40px] w-[40px] rounded-full flex items-center justify-center">
           <BsFillLightningChargeFill className="text-white text-[21px]" />
         </div>
         <div className="flex flex-col ml-3 text-[24px]">

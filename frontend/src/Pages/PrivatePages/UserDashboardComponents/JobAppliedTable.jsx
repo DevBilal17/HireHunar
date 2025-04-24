@@ -103,10 +103,10 @@ const JobAppliedTable = () => {
       <table className="min-w-[150px] w-full table-auto border border-collapse border-gray-200 rounded-lg overflow-x-scroll">
         <thead className="bg-gray-100">
           <tr>
-            <th className="px-4 py-2 text-left">Photo</th>
-            <th className="px-4 py-2 text-left">Job Title</th>
-            <th className="px-4 py-2 text-left">Applied Date</th>
-            <th className="px-4 py-2 text-left">Status</th>
+            <th className="md:px-4 px-2 py-2 text-left">Photo</th>
+            <th className="md:px-4 px-2 py-2 text-left">Job Title</th>
+            <th className="md:px-4 px-2 py-2 text-left">Applied Date</th>
+            <th className="md:px-4 px-2 py-2 text-left">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -115,18 +115,18 @@ const JobAppliedTable = () => {
               key={index}
               className="border-b border-gray-200 hover:bg-gray-50"
             >
-              <td className="px-4 py-2">
+              <td className="md:px-4 px-2 py-2">
                 <img
                   src={application.photo}
                   alt="Applicant"
                   className="w-10 h-10 rounded-full"
                 />
               </td>
-              <td className="px-4 py-2">{application.title}</td>
-              <td className="px-4 py-2">{application.appliedDate}</td>
-              <td className="px-4 py-2">
+              <td className="md:px-4 px-2 py-2 text-[14px]">{application.title}</td>
+              <td className="md:px-4 px-2 py-2 text-[14px]">{application.appliedDate}</td>
+              <td className="md:px-4 px-2 py-2">
                 <span
-                  className={`px-2 py-1 rounded ${
+                  className={`px-2 py-1 rounded text-[14px] ${
                     application.status === "Accepted"
                       ? "bg-green-100 text-green-700"
                       : application.status === "Rejected"

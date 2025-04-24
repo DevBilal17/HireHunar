@@ -7,27 +7,27 @@ import { TiTick } from "react-icons/ti";
 import userImg from "../../../assets/Images/HeroSection/user.png";
 const Card2 = () => {
   return (
-    <div className="flex items-center h-[500px] gap-4 relative">
-      <div className="w-[50%]  bg-blue-100 h-[95%]  rounded-2xl p-4 flex items-center justify-center">
+    <div className="flex w-full items-center md:h-[500px] h-[300px] gap-4 relative">
+      <div className="w-[50%]  bg-blue-100 h-[95%]  rounded-2xl p-4 md:flex hidden items-center justify-center">
         <div className="relative max-w-[400px]  flex items-center justify-center w-full h-[400px] rounded-full border-[1px] border-gray-300">
           <div className="max-w-[260px]  flex items-center justify-center w-full h-[260px] rounded-full border-[1px] border-gray-300">
             <div className="max-w-[100px]   w-full h-[100px] rounded-full border-[1px] p-3 border-gray-300 flex items-center justify-center">
-              <div className="icon g w-full h-full rounded-full flex items-center justify-center">
+              <div className="text-white custom-gradient w-full h-full rounded-full flex items-center justify-center">
                 <FaDownload className="text-2xl" />
                 <BiSolidFilePdf
-                  color="#D07ECE"
+                  color="#7ebcd0"
                   className="absolute top-13  text-[50px]"
                 />
                 <BiSolidFilePdf
-                  color="#FF68A4"
+                  color="#388BF5"
                   className="absolute text-[50px] left-17 top-25"
                 />
                 <BiSolidFilePdf
-                  color="#FCA6B0"
+                  color="#23CDEE"
                   className="text-[50px] absolute right-17 top-25"
                 />
                 <div className="card flex items-center p-2 absolute bottom-14 shadow-2xl max-w-[220px] justify-between w-full bg-white h-[60px] border-[1px] rounded-2xl border-gray-200">
-                  <div className="icon u h-[40px] w-[40px] rounded-full flex overflow-hidden items-center justify-center">
+                  <div className="custom-gradient u h-[40px] w-[40px] rounded-full flex overflow-hidden items-center justify-center">
                     <img src={userImg} alt="" className="w-[32px]" />
                   </div>
                   <span className="text-gray-900  text-[12px]">
@@ -43,7 +43,7 @@ const Card2 = () => {
         </div>
       </div>
       <CardContent
-        icon={<GoFileSymlinkFile className="text-[44px] text-pink-500" />}
+        icon={<GoFileSymlinkFile className="text-[44px] text-[#3a85f5]" />}
         c={"before"}
         head={"Directly Portfolio Upload"}
         para={"You can upload your resume or CV, and recruiters will reviewed"}

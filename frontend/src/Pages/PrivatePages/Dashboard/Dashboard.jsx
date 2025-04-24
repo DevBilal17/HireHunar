@@ -10,9 +10,9 @@ import DashNav from "../../../PrivateComponents/DashNav/DashNav";
 import DashComp from "../UserDashboardComponents/DashComp";
 const Dashboard = () => {
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <Side />
-      <div className="w-full  flex flex-col flex-1 ml-[80px] lg:ml-[250px] ">
+      <div className="w-full  flex flex-col flex-1  md:ml-[80px] lg:ml-[250px] ">
         <DashNav title={"Dashboard"} />
         <div className="h-full  w-full mx-auto  bg-gray-100  py-7">
           <DashComp/>

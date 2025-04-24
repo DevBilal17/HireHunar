@@ -5,10 +5,11 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { SiCanva } from "react-icons/si";
 import { FaBookmark, FaPinterest, FaReact } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
+import { FaNodeJs } from "react-icons/fa";
 import './NewsLetter.css'
 const NewsLetter = () => {
   return (
-    <section className="bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 text-gray-900 px-6 md:px-16 py-16 rounded-[30px]  relative">
+    <section className=" text-gray-900 px-6 md:px-16 py-16 rounded-[30px] bgHero  relative">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
           Transforming the Way <br /> you <span className="text-black">Find Jobs</span>
@@ -40,15 +41,15 @@ const NewsLetter = () => {
         {/* Job Card 1 */}
         <div className="news absolute -top-5 border-[1px] border-gray-300 right-[5%] bg-white max-w-[290px] h-[140px] w-full p-5 rounded-2xl">
                 <div className="flex items-center gap-2 w-full">
-                  <div className="icon h-[40px] w-[40px] rounded-full flex items-center justify-center">
+                  <div className="custom-gradient h-[40px] w-[40px] rounded-full flex items-center justify-center">
                     <FaReact className="i text-2xl text-white" />
                   </div>
                   <div className="pl-1  w-[80%]">
                     <div className="j-post font-semibold flex items-center relative w-full">
                       React Developer
-                      <span className="save-logo absolute right-0">
+                      {/* <span className="save-logo absolute right-0">
                         <FaBookmark className="text-pink-500" />
-                      </span>
+                      </span> */}
                     </div>
                     <div className="company font-normal text-gray-500 text-[13px]">
                       Logico
@@ -80,18 +81,18 @@ const NewsLetter = () => {
         {/* Job Card 2 */}
         <div className="news absolute bottom-8 border-[1px] border-gray-300 right-[20%] bg-white max-w-[290px] h-[140px] w-full p-5 rounded-2xl">
                 <div className="flex items-center gap-2 w-full">
-                  <div className="icon h-[40px] w-[40px] rounded-full flex items-center justify-center">
-                    <FaReact className="i text-2xl text-white" />
+                  <div className="custom-gradient h-[40px] w-[40px] rounded-full flex items-center justify-center">
+                    <FaNodeJs className="i text-2xl text-white" />
                   </div>
                   <div className="pl-1  w-[80%]">
                     <div className="j-post font-semibold flex items-center relative w-full">
-                      React Developer
-                      <span className="save-logo absolute right-0">
+                      Backend Developer
+                      {/* <span className="save-logo absolute right-0">
                         <FaBookmark className="text-pink-500" />
-                      </span>
+                      </span> */}
                     </div>
                     <div className="company font-normal text-gray-500 text-[13px]">
-                      Logico
+                      TechHub
                     </div>
                   </div>
                 </div>
@@ -107,11 +108,11 @@ const NewsLetter = () => {
                   <span className="location flex items-center gap-1.5">
                     <FiMapPin className="text-gray-500 text-[15px]" />
                     <span className="text-gray-500 text-[12px]">
-                      Pakistan, Faisalabad
+                      Pakistan, Lahore
                     </span>
                   </span>
                   <sapn className="salary text-[12px] text-gray-500">
-                    <span className="text-gray-900 font-semibold text-[15px]">RS:80K</span>
+                    <span className="text-gray-900 font-semibold text-[15px]">RS:40K</span>
                     /month
                   </sapn>
                 </div>

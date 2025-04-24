@@ -87,4 +87,4 @@ const StyledWrapper = styled.div`
     transition: box-shadow 0.2s ease-in;
   }`;
 
-export default LinkButton;
+export default React.memo(LinkButton);

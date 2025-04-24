@@ -2,7 +2,7 @@ import React from "react";
 
 const JobAppliedStatus = () => {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-md h-full w-full flex flex-col justify-center">
+    <div className="bg-white md:p-6 p-4 rounded-2xl shadow-md h-full w-full flex flex-col justify-center">
       <p className="text-gray-600 font-bold">Jobs Applied Status</p>
       <div className="mt-2 flex items-center space-x-4">
         <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">

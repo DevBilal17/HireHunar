@@ -2,6 +2,7 @@
 
 html{
   font-family: "Mona Sans", sans-serif;
+  scroll-behavior: smooth !important;
 }
 body{
   /* padding: 0 20px; */
@@ -116,7 +117,7 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
   -webkit-background-clip: text; /* Clipping background to text */
 -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
 background-clip: text; /* For non-webkit browsers */
-text-fill-color: transparent; /* Makes the text itself transparent for non-webkit browsers */
+-webkit-text-fill-color: transparent; /* Makes the text itself transparent for non-webkit browsers */
 }
 
 
@@ -132,7 +133,37 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
   background: linear-gradient(to right, #22d3ee, #3b82f6); /* From cyan-400 to blue-500 */
 }
 
+.p1{
+  background: #e771b4;
+  background: linear-gradient(
+    165deg,
+    rgba(231, 113, 180, 0.89) 45%,
+    rgba(255, 133, 161, 1) 70%,
+    rgba(253, 123, 167, 1) 100%
+  );
+  background: #0b1224; /* A dark base color */
+background: linear-gradient(
+167deg,
+rgba(33, 223, 255, 0.9) 20%,  /* Neon cyan */
+rgba(55, 89, 255, 0.85) 50%,  /* Neon blue */
+rgba(255, 20, 147, 0.85) 100% /* Neon pink */
+);
 
+
+background: #0b1224; /* A dark base color */
+background: linear-gradient(
+167deg,
+rgba(22, 178, 204, 0.9) 25%,  /* Darker cyan */
+rgba(55, 89, 255, 0.85) 50%,  /* Neon blue */
+rgba(25, 123, 255, 0.85) 100% /* Sky blue */
+);
+background: linear-gradient(to right, #22d3ee, #3b82f6);
+
+  -webkit-background-clip: text; /* Clipping background to text */
+-webkit-text-fill-color: transparent; /* Makes the text itself transparent */
+background-clip: text; /* For non-webkit browsers */
+-webkit-text-fill-color: transparent; /* Makes the text itself transparent for non-webkit browsers */
+}
 .inset-box-shadow {
   box-shadow: inset 0px 4px 6px rgba(128, 128, 128, 0.1); /* Gray shadow */
 }
@@ -174,7 +205,12 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
   background-color: #e60000; /* Darker red on hover */
 }
 
+.login{
+  background: #eefafa;  
+background: linear-gradient(167deg, #e0f9f9 20%, #91d3f0 50%, #88d8d8 100%);  
 
+
+}
 
 .animate-Btn {
   background: transparent;
@@ -192,9 +228,23 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
   cursor: pointer;
 }
 
+.footer li{
+  transition: all 0.2s linear;
+}
+.footer li:hover{
+ transform: translateX(10px);
+}
+
 .animate-Btn:hover {
   animation: animate-scaleX 0.6s cubic-bezier(0.4, 0, 0, 1);
   background: transparent;
+
+  background: #d9f9fa;  
+background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
+  -webkit-background-clip: text; /* Clipping background to text */
+-webkit-text-fill-color: transparent; /* Makes the text itself transparent */
+background-clip: text; /* For non-webkit browsers */
+text-fill-color: transparent !important;
 }
 
 .animate-Btn::after {
@@ -270,4 +320,13 @@ background: linear-gradient(167deg, #c2ecee 20%, #a9e3e8 50%, #91d9dc 100%);
       margin-left: 20px;
       padding: 20px 7px;
   }
+}
+
+
+
+
+.dash-boxes{
+  background-color: white;
+  border-radius: 1rem; /* 2xl = 16px = 1rem */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }

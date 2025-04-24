@@ -4,7 +4,7 @@ import { IoIosPhonePortrait } from "react-icons/io";
 const AdditionalInformation = ({profile}) => {
   let {email,phoneNo} = profile
   return (
-    <div className="min-h-fit relative w-full p-5 border border-gray-300 ">
+    <div className="min-h-fit relative w-full md:p-6 p-4  dash-boxes border border-gray-300 ">
       <h2 className="text-xl font-semibold">Additional Information</h2>
       <ul className="pl-5 mt-5">
         <li className="flex items-start gap-2.5">
@@ -32,4 +32,4 @@ const AdditionalInformation = ({profile}) => {
   );
 };
 
-export default AdditionalInformation;
+export default React.memo(AdditionalInformation);

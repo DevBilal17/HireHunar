@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaFire, FaReact } from "react-icons/fa";
 const InfoSection = () => {
   return (
-    <div className='flex md:flex-row flex-col gap-4 items-center  min-h-fit relative w-full p-5 '>
+    <div className='flex md:flex-row flex-col gap-4 items-center  min-h-fit relative w-full md:p-6 p-4   dash-boxes'>
       <div className='flex  md:h-[100px]  w-[60px] pt-1 justify-center'>
         {/* <img src="" alt="" /> */}
         <FaReact className='text-[60px] text-blue-900'/>

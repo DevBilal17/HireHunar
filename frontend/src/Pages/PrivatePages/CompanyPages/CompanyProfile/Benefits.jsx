@@ -4,9 +4,9 @@ import BenefitCard from "./BenefitCard";
 
 const Benefits = () => {
   return (
-    <div className="min-h-fit relative w-full p-5 border border-gray-300 ">
+    <div className="min-h-fit relative w-full md:p-6 p-4 dash-boxes ">
       <h2 className="text-xl font-semibold">Benefits</h2>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap lg:justify-start justify-center gap-3 mt-3">
         <BenefitCard/>
         <BenefitCard/>
         <BenefitCard/>

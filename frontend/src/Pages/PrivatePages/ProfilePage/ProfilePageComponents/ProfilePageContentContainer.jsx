@@ -28,4 +28,4 @@ const ProfilePageContentContainer = () => {
   )
 }
 
-export default ProfilePageContentContainer
+export default React.memo(ProfilePageContentContainer)

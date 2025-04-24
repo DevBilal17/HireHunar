@@ -7,6 +7,8 @@
       rgb(255, 97, 150) 100%
     );
     color: #fff;
+
+    background: linear-gradient(to right, #22d3ee, #3b82f6);
 }
 .btnHover{
     transition: all 0.1s linear;
@@ -20,6 +22,7 @@
       rgb(255, 97, 150) 100%
     );
     color: #fff;
+    background: linear-gradient(to right, #22d3ee, #3b82f6);
 }
 @media (max-width:990px) {
     .categoryCards{
