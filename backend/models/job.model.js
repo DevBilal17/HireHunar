@@ -37,10 +37,32 @@ const jobSchema = new mongoose.Schema(
       default: [],
     },
 
+    applyBefore: {
+      type: String,
+      default: "",
+    },
+
     datePosted: {
       type: String,
       default: "",
     },
+
+    niceToHaves: {
+      type: [String],
+      default: [],
+    },
+
+    salary: {
+      type: String,
+      default: "",
+    },
+
+    perksAndBenefits: [
+      {
+        title: { type: String, default: "" },
+        description: { type: String, default: "" },
+      },
+    ],
 
     companyId: {
       type: String,

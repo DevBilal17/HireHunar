@@ -164,7 +164,16 @@ const userSchema = new mongoose.Schema(
         responsibilities: { type: [String], default: [] },
         requiredSkills: { type: [String], default: [] },
         categories: { type: [String], default: [] },
+        applyBefore: String,
         datePosted: String,
+        niceToHaves: { type: [String], default: [] },
+        salary: String,
+        perksAndBenefits: [
+          {
+            title: { type: String, default: "" },
+            description: { type: String, default: "" },
+          },
+        ],
         userApplications: [
           {
             applicantId: { type: String, default: "" },
@@ -193,8 +202,17 @@ const userSchema = new mongoose.Schema(
         responsibilities: { type: [String], default: [] },
         requiredSkills: { type: [String], default: [] },
         categories: { type: [String], default: [] },
+        applyBefore: String,
         datePosted: String,
         dateApplied: String,
+        niceToHaves: { type: [String], default: [] },
+        salary: String,
+        perksAndBenefits: [
+          {
+            title: { type: String, default: "" },
+            description: { type: String, default: "" },
+          },
+        ],
         companyId: String,
         applicationStatus: { type: String, default: "" },
       },
