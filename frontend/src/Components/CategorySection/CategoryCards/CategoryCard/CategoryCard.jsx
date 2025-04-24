@@ -4,6 +4,7 @@ import { FiMapPin } from "react-icons/fi";
 import { CiTimer } from "react-icons/ci";
 import { LuBuilding2 } from "react-icons/lu";
 import { TbPigMoney } from "react-icons/tb";
+import { Link } from "react-router-dom";
 const CategoryCard = ({
   companyicon,
   company,
@@ -13,9 +14,10 @@ const CategoryCard = ({
   jobtime,
   salary,
   posttime,
+  link
 }) => {
   return (
-    <div className=" max-w-[440px] w-full border-[1px] border-gray-200 rounded-2xl flex flex-col items-center py-3 bg-[#F8FAFB] hover:bg-[#d9edff] cursor-pointer mt-4 card">
+    <Link to={link} className=" max-w-[440px] w-full border-[1px] border-gray-200 rounded-2xl flex flex-col items-center py-3 bg-[#F8FAFB] hover:bg-[#d9edff] cursor-pointer mt-4 card">
       <div className="max-w-[420px] w-full border-[1px] card-inside border-gray-200 transition-all duration-200 p-2 rounded-2xl bg-white">
         <div className="flex items-center justify-between ">
           <div className=" ]">
@@ -53,7 +55,7 @@ const CategoryCard = ({
       <div className=" mt-2 text-gray-600">
       {posttime}
       </div>
-    </div>
+    </Link>
   );
 };
 

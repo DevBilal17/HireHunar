@@ -1,24 +1,51 @@
-import React from "react";
-import JobsApplied from "../../UserDashboardComponents/JobsApplied";
-import Interviewed from "../../UserDashboardComponents/Interviewed";
-import JobAppliedStatus from "../../UserDashboardComponents/JobAppliedStatus";
-import JobsPosted from "./JobsPosted";
-import OpenJobs from "./OpenJobs";
-import AddJob from "./AddJob";
-import AllJobsTable from "../CompanyDashboard/AllJobsTable";
 
-const JobsInfo = () => {
+import React from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+import { GiPaperClip } from 'react-icons/gi';
+import AllJobsTable from './AllJobsTable';
+
+const ComDash = () => {
   return (
-    <div>
-      <div>
-        <div className="flex md:flex-row flex-col gap-4">
-          
-            <JobsPosted />
-            <OpenJobs />
-            <AddJob />
-       
+    <div className="flex bg-gray-100">
+      
+    {/* Main Content Area */}
+    <div className="flex-1 flex flex-col w-full overflow-auto">
+      <main className="p-4 space-y-6">
+        {/* Total Jobs Applied and Interviewed Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className='grid grid-rows-2 gap-3'>
+            <div className="bg-white p-6 rounded-2xl shadow-md">
+              <p className="text-gray-600">Total Jobs Posted</p>
+              <h2 className="text-3xl font-bold">45</h2>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-md">
+              <p className="text-gray-600">Total Team Members</p>
+              <h2 className="text-3xl font-bold">18</h2>
+            </div>
+
+          </div>
+
+          <div>
+          <div className='grid grid-rows-2 gap-3'>
+            <div className="bg-white p-6 rounded-2xl shadow-md">
+              <p className="text-gray-600">Total Applicants</p>
+              <h2 className="text-3xl font-bold">45</h2>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-md">
+              <p className="text-gray-600">hahahah</p>
+              <h2 className="text-3xl font-bold">18</h2>
+            </div>
+
+          </div>
+
+          </div>
+
         </div>
-        <div className="bg-white p-6 rounded-2xl relative  shadow-md sm:rounded-lg mt-6">
+
+        {/* Total Job Posted */}
+        <div className="bg-white p-6 rounded-2xl relative  shadow-md sm:rounded-lg">
           <h3 className="text-lg font-semibold mb-4">All Jobs</h3>
           {/* <div className="overflow-x-auto">
             <Table>
@@ -78,9 +105,11 @@ const JobsInfo = () => {
           </div> */}
           <AllJobsTable/>
         </div>
-      </div>
+      </main>
     </div>
-  );
-};
+  </div>
 
-export default JobsInfo;
+  )
+}
+
+export default ComDash
