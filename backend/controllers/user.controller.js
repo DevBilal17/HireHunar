@@ -36,8 +36,8 @@ export const getUserById = async (req, res, next) => {
       services,
       gallery,
       team,
-      jobs,
-      companyStatistics,
+      // jobs,
+      // companyStatistics,
       _id,
       createdAt,
       updatedAt,
@@ -76,8 +76,8 @@ export const getUserById = async (req, res, next) => {
         services,
         gallery,
         team,
-        jobs,
-        companyStatistics,
+        // jobs,
+        // companyStatistics,
       };
     }
 
@@ -122,8 +122,8 @@ export const updateUser = async (req, res, next) => {
       services,
       gallery,
       team,
-      jobs,
-      companyStatistics,
+      // jobs,
+      // companyStatistics,
       oldPassword,
       newPassword,
       confirmNewPassword,
@@ -165,8 +165,8 @@ export const updateUser = async (req, res, next) => {
       if (services) user.services = services;
       if (gallery) user.gallery = gallery;
       if (team) user.team = team;
-      if (jobs) user.jobs = jobs;
-      if (companyStatistics) user.companyStatistics = companyStatistics;
+      // if (jobs) user.jobs = jobs;
+      // if (companyStatistics) user.companyStatistics = companyStatistics;
     }
 
     // Handle password update
@@ -230,8 +230,8 @@ export const updateUser = async (req, res, next) => {
         services: user.services,
         gallery: user.gallery,
         team: user.team,
-        jobs: user.jobs,
-        companyStatistics: user.companyStatistics,
+        // jobs: user.jobs,
+        // companyStatistics: user.companyStatistics,
       }),
     };
 

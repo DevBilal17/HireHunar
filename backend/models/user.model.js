@@ -1,44 +1,8 @@
 import mongoose from "mongoose";
 
-// const userSchema = new mongoose.Schema(
-//   {
-//     userType: {
-//       type: String,
-//       required: true,
-//       default: "jobseeker",
-//       enum: ["jobseeker", "company"],
-//     },
-//     name: {
-//       type: String,
-//       required: true,
-//       trim: true,
-//     },
-//     email: {
-//       type: String,
-//       required: true,
-//       unique: true,
-//       lowercase: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//     },
-//     profilePicture: {
-//       type: String,
-//       default:
-//         "https://t4.ftcdn.net/jpg/03/32/59/65/360_F_332596535_lAdLhf6KzbW6PWXBWeIFTovTii1drkbT.jpg",
-//     },
-//     isAdmin: {
-//       type: Boolean,
-//       default: false,
-//     },
-//   },
-//   { timestamps: true }
-// );
-
 const userSchema = new mongoose.Schema(
   {
-    // 1. Personal Info (signup fields + profile)
+    // Personal Info (signup fields + profile)
     personalInfo: {
       userType: {
         type: String,
@@ -105,20 +69,20 @@ const userSchema = new mongoose.Schema(
       },
     },
 
-    // 2. Location Info
+    // Location Info
     location: {
       address: { type: String, default: "" },
       city: { type: String, default: "" },
       country: { type: String, default: "" },
     },
 
-    // 3. Skills only for jobseeker
+    // Skills only for jobseeker
     skills: {
       type: [String], // Example: ['JavaScript', 'Node.js', 'MongoDB']
       default: [],
     },
 
-    // 4. Education only for jobseeker
+    // Education only for jobseeker
     education: [
       {
         degree: String,
@@ -129,7 +93,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 5. Experience only for jobseeker
+    // Experience only for jobseeker
     experience: [
       {
         jobTitle: String,
@@ -140,7 +104,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 6. Projects only for jobseeker
+    // Projects only for jobseeker
     projects: [
       {
         projectName: String,
@@ -149,7 +113,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 7. Documents only for jobseeker
+    // Documents only for jobseeker
     documents: [
       {
         docName: String,
@@ -158,7 +122,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 8. Links
+    // Links
     links: [
       {
         platform: String, // e.g., LinkedIn, GitHub
@@ -166,7 +130,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 9. Services/Products only for company
+    // Services/Products only for company
     services: [
       {
         serviceName: String, // any specific service or product
@@ -174,7 +138,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // 10. gallery only for company
+    // gallery only for company
     gallery: {
       type: [String],
       default: [],
@@ -189,21 +153,60 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // jobs listed only for company
-    jobs: [
+    // jobs posted field only for company
+    jobsPosted: [
       {
+        jobId: String,
         jobTitle: String,
+        jobDescription: String,
         jobType: String, // full-time, part-time etc.
-        location: String, // remote, onsite etc.
-        postedDate: String,
-        link: String,
+        jobLocation: String,
+        responsibilities: { type: [String], default: [] },
+        requiredSkills: { type: [String], default: [] },
+        categories: { type: [String], default: [] },
+        datePosted: String,
+        userApplications: [
+          {
+            applicantId: { type: String, default: "" },
+            applicantName: { type: String, default: "" },
+            profilePicture: { type: String, default: "" },
+            setApplicationStatus: { type: String, default: "" },
+          },
+        ],
       },
     ],
 
     // company statistics only for company
     companyStatistics: {
-      totalJobsPosted: Number,
-      totalHires: Number,
+      totalJobsPosted: { type: Number, default: 0 },
+      totalHires: { type: Number, default: 0 },
+    },
+
+    // jobs applied only for jobseeker
+    jobsApplied: [
+      {
+        jobId: String,
+        jobTitle: String,
+        jobDescription: String,
+        jobType: String, // full-time, part-time etc.
+        jobLocation: String,
+        responsibilities: { type: [String], default: [] },
+        requiredSkills: { type: [String], default: [] },
+        categories: { type: [String], default: [] },
+        datePosted: String,
+        dateApplied: String,
+        companyId: String,
+        applicationStatus: { type: String, default: "" },
+      },
+    ],
+
+    // jobseeker statistics only for jobseeker
+    jobseekerStatistics: {
+      totalJobsApplied: { type: Number, default: 0 },
+      inReview: { type: Number, default: 0 },
+      shortlisted: { type: Number, default: 0 },
+      approved: { type: Number, default: 0 },
+      declined: { type: Number, default: 0 },
     },
   },
   { timestamps: true }
