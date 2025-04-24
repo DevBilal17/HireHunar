@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
+import jobRoutes from "./routes/job.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -33,6 +34,7 @@ app.listen(process.env.port, () => {
 
 app.use("/backend/user", userRoutes);
 app.use("/backend/auth", authRoutes);
+app.use("/backend/job", jobRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
