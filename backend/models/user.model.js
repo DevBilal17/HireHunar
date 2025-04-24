@@ -153,7 +153,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // jobs posted field only for company
+    // jobs posted field only for company dashboard
     jobsPosted: [
       {
         jobId: String,
@@ -176,13 +176,13 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // company statistics only for company
+    // company statistics only for company dashboard
     companyStatistics: {
       totalJobsPosted: { type: Number, default: 0 },
       totalHires: { type: Number, default: 0 },
     },
 
-    // jobs applied only for jobseeker
+    // jobs applied only for jobseeker dashboard
     jobsApplied: [
       {
         jobId: String,
@@ -200,7 +200,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
 
-    // jobseeker statistics only for jobseeker
+    // jobseeker statistics only for jobseeker dashboard
     jobseekerStatistics: {
       totalJobsApplied: { type: Number, default: 0 },
       inReview: { type: Number, default: 0 },
