@@ -294,3 +294,92 @@ export const deleteUser = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getUserDashboardInfo = async (req, res, next) => {
+  try {
+    const token = req.cookies.access_token;
+    if (!token) {
+      return next(errorHandler(401, "Unauthorized: No token provided."));
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return next(errorHandler(404, "User not found"));
+    }
+
+    const {
+      personalInfo,
+      location,
+      skills,
+      education,
+      experience,
+      projects,
+      documents,
+      links,
+      services,
+      gallery,
+      team,
+      jobsPosted,
+      companyStatistics,
+      jobsApplied,
+      jobseekerStatistics,
+      _id,
+      createdAt,
+      updatedAt,
+    } = user;
+
+    let dashboardData = {
+      _id,
+      name: personalInfo.name,
+      email: personalInfo.email,
+      userType: personalInfo.userType,
+      profilePicture: personalInfo.profilePicture,
+      coverPicture: personalInfo.coverPicture,
+      phoneNo: personalInfo.phoneNo,
+      location,
+      links,
+      createdAt,
+      updatedAt,
+    };
+
+    if (personalInfo.userType === "jobseeker") {
+      dashboardData = {
+        ...dashboardData,
+        aboutMe: personalInfo.aboutMe,
+        skills,
+        education,
+        experience,
+        projects,
+        documents,
+        jobsApplied,
+        jobseekerStatistics,
+      };
+    } else if (personalInfo.userType === "company") {
+      dashboardData = {
+        ...dashboardData,
+        industry: personalInfo.industry,
+        aboutCompany: personalInfo.aboutCompany,
+        websiteLink: personalInfo.websiteLink,
+        services,
+        gallery,
+        team,
+        jobsPosted: jobsPosted,
+        companyStatistics: companyStatistics,
+      };
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Dashboard info fetched successfully",
+      data: dashboardData,
+    });
+  } catch (error) {
+    console.error("Error in getUserDashboardInfo controller:", error);
+    return next(
+      errorHandler(500, "Something went wrong while fetching dashboard info!")
+    );
+  }
+};
