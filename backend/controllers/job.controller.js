@@ -174,3 +174,76 @@ export const deleteJob = async (req, res, next) => {
     next(err);
   }
 };
+
+export const searchJobs = async (req, res, next) => {
+  try {
+    const { jobTitle, jobLocation, categories } = req.query;
+
+    const query = {};
+
+    if (jobTitle) {
+      query.jobTitle = { $regex: jobTitle.trim(), $options: "i" };
+    }
+
+    if (jobLocation) {
+      query.jobLocation = { $regex: jobLocation.trim(), $options: "i" };
+    }
+
+    if (categories) {
+      const categoriesArray = Array.isArray(categories)
+        ? categories
+        : categories.split(",");
+
+      query.$or = categoriesArray.map((category) => ({
+        categories: { $regex: category.trim(), $options: "i" },
+      }));
+    }
+
+    const jobs = Object.keys(query).length
+      ? await Job.find(query).limit(4)
+      : await Job.find().limit(4);
+
+    if (!jobs || jobs.length === 0) {
+      return next(
+        errorHandler(
+          404,
+          "No jobs found matching your search. Try changing the filters."
+        )
+      );
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Jobs fetched successfully",
+      data: jobs,
+    });
+  } catch (error) {
+    console.error("Error in searchJobs API:", error);
+    return next(errorHandler(500, "Something went wrong while searching jobs"));
+  }
+};
+
+export const showMoreJobs = async (req, res, next) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 4;
+    const skip = (page - 1) * limit;
+
+    const jobs = await Job.find().skip(skip).limit(limit);
+
+    if (!jobs || jobs.length === 0) {
+      return next(errorHandler(404, "No more jobs found."));
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "More jobs fetched successfully",
+      data: jobs,
+    });
+  } catch (error) {
+    console.error("Error in showMoreJobs API:", error);
+    return next(
+      errorHandler(500, "Something went wrong while fetching more jobs")
+    );
+  }
+};
