@@ -178,6 +178,7 @@ const userSchema = new mongoose.Schema(
           {
             applicantId: { type: String, default: "" },
             applicantName: { type: String, default: "" },
+            applicantEmail: { type: String, default: "" },
             profilePicture: { type: String, default: "" },
             setApplicationStatus: { type: String, default: "" },
           },
