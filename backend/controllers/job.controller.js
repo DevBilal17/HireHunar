@@ -77,7 +77,7 @@ export const updateJob = async (req, res, next) => {
       return next(errorHandler(403, "Only companies can update job posts."));
     }
 
-    const jobId = req.params.id;
+    const jobId = req.params.jobId;
     const job = await Job.findById(jobId);
 
     if (!job) {
@@ -146,7 +146,7 @@ export const deleteJob = async (req, res, next) => {
       return next(errorHandler(403, "Only companies can delete job posts."));
     }
 
-    const jobId = req.params.id;
+    const jobId = req.params.jobId;
     const job = await Job.findById(jobId);
 
     if (!job) {
