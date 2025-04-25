@@ -1,3 +1,4 @@
+import Job from "../models/job.model.js";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
@@ -9,17 +10,22 @@ export const test = (req, res) => {
 // GET: /backend/user/profileInfo/:userId (get user by id)
 export const getUserById = async (req, res, next) => {
   try {
-    const { userId } = req.params;
-
-    // console.log("req.user:", req.user);
-
-    if (req.user.id !== userId) {
-      return next(
-        errorHandler(403, "You are not allowed to view this profile")
-      );
+    const token = req.cookies.access_token;
+    if (!token) {
+      return next(errorHandler(401, "Unauthorized: No token provided."));
     }
 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
     const user = await User.findById(userId);
+
+    // if (req.user.id !== userId) {
+    //   return next(
+    //     errorHandler(403, "You are not allowed to view this profile")
+    //   );
+    // }
+
     if (!user) {
       return next(errorHandler(404, "User not found"));
     }
@@ -97,15 +103,22 @@ export const getUserById = async (req, res, next) => {
 // PUT: /backend/user/updateUser/:userId (update user)
 export const updateUser = async (req, res, next) => {
   try {
-    const { userId } = req.params;
-
-    if (req.user.id !== userId) {
-      return next(
-        errorHandler(403, "You are not allowed to update this profile")
-      );
+    const token = req.cookies.access_token;
+    if (!token) {
+      return next(errorHandler(401, "Unauthorized: No token provided."));
     }
 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
     const user = await User.findById(userId);
+
+    // if (req.user.id !== userId) {
+    //   return next(
+    //     errorHandler(403, "You are not allowed to view this profile")
+    //   );
+    // }
+
     if (!user) {
       return next(errorHandler(404, "User not found"));
     }
@@ -245,5 +258,38 @@ export const updateUser = async (req, res, next) => {
     return next(
       errorHandler(500, "Something went wrong while updating the profile!")
     );
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const token = req.cookies.access_token;
+    if (!token) {
+      return next(errorHandler(401, "Unauthorized: No token provided."));
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return next(errorHandler(404, "User not found."));
+    }
+
+    if (user.personalInfo.userType === "company") {
+      await Job.deleteMany({ companyId: user._id.toString() });
+    }
+
+    await User.findByIdAndDelete(userId);
+
+    res.clearCookie("access_token");
+
+    res.status(200).json({
+      success: true,
+      message: "User and related data deleted successfully.",
+    });
+  } catch (err) {
+    next(err);
   }
 };
