@@ -22,10 +22,10 @@ const jobSchema = new mongoose.Schema(
       default: "",
     },
 
-    responsibilities: {
-      type: [String],
-      default: [],
-    },
+    // responsibilities: {
+    //   type: [String],
+    //   default: [],
+    // },
 
     requiredSkills: {
       type: [String],

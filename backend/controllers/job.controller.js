@@ -37,7 +37,7 @@ export const createJob = async (req, res, next) => {
       jobDescription: savedJob.jobDescription,
       jobType: savedJob.jobType,
       jobLocation: savedJob.jobLocation,
-      responsibilities: savedJob.responsibilities,
+      // responsibilities: savedJob.responsibilities,
       requiredSkills: savedJob.requiredSkills,
       categories: savedJob.categories,
       applyBefore: savedJob.applyBefore,

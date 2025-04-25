@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LinkButton = ({children,link}) => {
+const LinkButton = ({children,link,className}) => {
   return (
     <StyledWrapper>
-      <Link to={link}>
+      <Link to={link} className={className}>
         {children}
       </Link>
     </StyledWrapper>

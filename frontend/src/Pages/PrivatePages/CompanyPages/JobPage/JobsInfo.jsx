@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import JobsApplied from "../../UserDashboardComponents/JobsApplied";
 import Interviewed from "../../UserDashboardComponents/Interviewed";
 import JobAppliedStatus from "../../UserDashboardComponents/JobAppliedStatus";
@@ -6,76 +6,22 @@ import JobsPosted from "./JobsPosted";
 import OpenJobs from "./OpenJobs";
 import AddJob from "./AddJob";
 import AllJobsTable from "../CompanyDashboard/AllJobsTable";
+import { JobApiData } from "../../../../Contexts/JobApiContext";
 
 const JobsInfo = () => {
+   let {userAllData} = useContext(JobApiData)
   return (
     <div>
       <div>
         <div className="flex md:flex-row flex-col gap-4">
           
-            <JobsPosted />
-            <OpenJobs />
+            <JobsPosted data={userAllData} />
+            <OpenJobs data={userAllData} />
             <AddJob />
        
         </div>
         <div className="bg-white p-6 rounded-2xl relative  shadow-md sm:rounded-lg mt-6">
           <h3 className="text-lg font-semibold mb-4">All Jobs</h3>
-          {/* <div className="overflow-x-auto">
-            <Table>
-
-              <TableBody className="divide-y">
-                {[
-                  {
-                    Title: 'Social Media Assistant',
-                    company: 'Nomad',
-                    location: 'Paris, France',
-                    date: '24 July 2021',
-                    Applicants:"23",
-                    status: 'In Review',
-                    statusColor: 'text-yellow-600 border-yellow-400'
-                  },
-                  {
-                    Title: 'Social Media Assistant',
-                    company: 'Udacity',
-                    location: 'New York, USA',
-                    date: '23 July 2021',
-                    Applicants:"20",
-                    status: 'Shortlisted',
-                    statusColor: 'text-indigo-600 border-indigo-400'
-                  },
-                  {
-                    Title: 'Social Media Assistant',
-                    company: 'Packer',
-                    location: 'Madrid, Spain',
-                    date: '22 July 2021',
-                    Applicants:"21",
-                    status: 'Declined',
-                    statusColor: 'text-red-600 border-red-400'
-                  }
-                ].map((user, index) => (
-                  <TableRow className="bg-white">
-                    <TableCell className="whitespace-nowrap text-black">
-                      <div className='flex'>
-                        <div className='ml-3'>
-                          <p className='font-bold text-md'>{user.Title}</p>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <p className='font-bold text-md text-black'>Date Posted</p>
-                      <p className='text-[12px]'>{user.date}</p>
-                    </TableCell>
-                    <TableCell>
-                      <p className='font-bold text-md text-black'>Total Applicants</p>
-                      <p className='text-[12px]'>{user.Applicants}</p>
-                    </TableCell>
-                    
-
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div> */}
           <AllJobsTable/>
         </div>
       </div>

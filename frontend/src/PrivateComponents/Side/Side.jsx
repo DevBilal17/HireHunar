@@ -38,7 +38,7 @@ const Side = ({ isOpen, onClose }) => {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-30 z-30 lg:hidden"
+          className="fixed  inset-0 bg-black opacity-30 z-10 lg:hidden"
           onClick={onClose}
         >
           <FaArrowLeftLong className="text-black" />
@@ -46,8 +46,19 @@ const Side = ({ isOpen, onClose }) => {
       )}
 
       <section
-        className={` transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full  h-screen   lg:p-5 py-5 px-3 s fixed z-30 bg-white left-0 top-0 
-`}
+        // className={` transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full  h-screen   lg:p-5 py-5 px-3 s fixed  z-20 bg-white left-0 top-0
+        //   min-[600px]:static min-[600px]:translate-x-0 min-[600px]:block ${
+        //     isOpen ? "translate-x-0" : "-translate-x-full"
+        //   }`}
+
+
+        className={`transition-all duration-500 max-w-[80px] lg:max-w-[250px] w-full h-screen 
+          lg:p-5 py-5 px-3 fixed z-30 bg-white left-0 top-0 
+           min-[600px]:translate-x-0  
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+          // style={{
+          //   overflowY: "auto", // Enables scrolling inside the sidebar
+          // }}
       >
         <Link to={"/"} className="hidden lg:block">
           <h3 className="brand font-semibold text-[25px] hidden lg:block">

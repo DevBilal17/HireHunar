@@ -26,9 +26,9 @@ const ProfileImageSection = ({profile}) => {
               {profile.location.address} - {profile.location.city} - {profile.location.country}
             </p>
           </div>
-          <div>
-            <LinkButton className="px-3 py-2 border cursor-pointer custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white  font-medium"><button className="cursor-pointer">Edit Profile</button></LinkButton>
-          </div>
+          {/* <div>
+            <LinkButton link={`/my-profile/edit-profile/`} className="px-3 py-2 border cursor-pointer custom-gradient backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform   text-white  font-medium"><button className="cursor-pointer">Edit Profile</button></LinkButton>
+          </div> */}
         </div>
       </div>
     </div>

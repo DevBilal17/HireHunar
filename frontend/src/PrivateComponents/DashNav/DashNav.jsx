@@ -18,7 +18,7 @@ const DashNav = ({ title, onMenuClick }) => {
         to={"/"}
         className=" md:py-3 py-1.5 px-2.5 md:px-4 md:mr-0 mr-5  rounded-3xl text-white font-medium bg-gradient-to-r from-cyan-500 text-[14px] to-blue-500 bg-opacity-10 backdrop-blur-md hover:bg-opacity-20 shadow-lg transition-transform transform"
       >
-        Back to home
+        Home
       </Link>
     </div>
   );

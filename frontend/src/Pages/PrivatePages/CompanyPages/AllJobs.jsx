@@ -1,7 +1,7 @@
 import React from "react";
 import DashNav from "../../../PrivateComponents/DashNav/DashNav";
 import Side from "../../../PrivateComponents/Side/Side";
-import AllJobsPage from "./AllJobsPage";
+// import AllJobsPage from "./AllJobsPage";
 import JobsInfo from "./JobPage/JobsInfo";
 
 const AllJobs = () => {

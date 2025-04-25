@@ -18,6 +18,8 @@ import PostJobs from "./Pages/PrivatePages/CompanyPages/PostJobs";
 import CompanyProfile from "./Pages/PrivatePages/CompanyPages/CompanyProfile";
 import AllJobs from "./Pages/PrivatePages/CompanyPages/AllJobs";
 import SingleJobPage from "./Pages/PrivatePages/CompanyPages/JobPage/SingleJobPage";
+import EditProfile from "./Pages/PrivatePages/CompanyPages/JobPage/EditProfile";
+import UserProfileEditPage from "./Pages/PrivatePages/ProfilePage/UserProfileEdit/UserProfileEditPage";
 const App = () => {
   const [url, setUrl] = useState(false);
   let location = useLocation();
@@ -53,6 +55,10 @@ const App = () => {
           <Route path="/post-job" element={<PostJobs/>} />
           <Route path="/company-profile" element={<CompanyProfile/>} />
           <Route path= '/all-jobs' element={<AllJobs/>} />
+
+          <Route path="/company-profile/edit-profile/:id" element={<EditProfile/>}/>
+
+          <Route path="/my-profile/edit-profile" element={<UserProfileEditPage/>} />
         </Route>
       </Routes>
       <Footer className={`${url && "hide"}`} />

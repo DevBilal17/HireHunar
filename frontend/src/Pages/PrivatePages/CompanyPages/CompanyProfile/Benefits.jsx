@@ -2,7 +2,7 @@
 import React from "react";
 import BenefitCard from "./BenefitCard";
 
-const Benefits = () => {
+const Benefits = ({profile}) => {
   return (
     <div className="min-h-fit relative w-full md:p-6 p-4 dash-boxes ">
       <h2 className="text-xl font-semibold">Benefits</h2>

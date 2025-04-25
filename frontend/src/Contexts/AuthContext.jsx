@@ -67,8 +67,11 @@ const AuthContext = ({ children }) => {
    const callLogOut = ()=>{
     // setIsAuthenticated(false)
     localStorage.removeItem('user_data')
-    setUser(null) 
     localStorage.removeItem('profile')
+    localStorage.removeItem('user-all-data')
+    
+    setUser(null) 
+ 
     toast.success("Logged out successfully");
     navigate('/');
     

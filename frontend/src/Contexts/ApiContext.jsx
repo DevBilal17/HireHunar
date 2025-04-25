@@ -22,7 +22,7 @@ const ApiContext = ({ children }) => {
     try {
       let response = await axios.get(`/backend/user/getUserById/${userID}`);
       const fetchedProfile = response.data.data;
-
+      
       // Save fetched profile to state and localStorage
       setProfile(fetchedProfile);
       localStorage.setItem("profile", JSON.stringify(fetchedProfile));

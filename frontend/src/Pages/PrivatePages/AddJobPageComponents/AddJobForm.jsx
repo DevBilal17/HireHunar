@@ -1,400 +1,431 @@
-import React, { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-// import { X } from "lucide-react";
+import { useForm } from "react-hook-form";
+import React, { useContext, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import { JobApiData } from "../../../Contexts/JobApiContext";
+
 const AddJobForm = () => {
-    const {
-        register,
-        handleSubmit,
-        control,
-        setValue,
-        getValues,
-        resetField,
-        formState: { errors },
-      } = useForm({
-        defaultValues: {
-          title: "",
-          company: "",
-          location: "",
-          jobType: "Full-Time",
-          salary: "",
-          description: "",
-          responsibilities: [""],
-          perks: [],
-          skills: [],
-          categories: [],
-          applyBy: "",
-        },
-      });
-    
-      const { fields: perkFields, append: appendPerk, remove: removePerk } = useFieldArray({
-        control,
-        name: "perks",
-      });
-    
-      const { fields: skillFields, append: appendSkill, remove: removeSkill } = useFieldArray({
-        control,
-        name: "skills",
-      });
-    
-      const { fields: categoryFields, append: appendCategory, remove: removeCategory } = useFieldArray({
-        control,
-        name: "categories",
-      });
-    
-      const onSubmit = (data) => {
-        console.log("Form Submitted:", data);
+
+  let {addJob} = useContext(JobApiData)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [requiredSkills, setSkills] = useState([]);
+  const [currentSkill, setCurrentSkill] = useState("");
+  const [skillError, setSkillError] = useState(false);
+
+
+  const [categories, setCategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [categoryError, setCategoryError] = useState(false);
+
+  const [niceToHaves, setNiceToHaves] = useState([]);
+  const [currentNice, setCurrentNice] = useState("");
+  const [niceError, setNiceError] = useState(false);
+
+  const [perksAndBenefits, setPerks] = useState([]);
+  const [editingPerk, setEditingPerk] = useState({
+    index: null,
+    title: "",
+    description: "",
+  });
+  const [perkError, setPerkError] = useState(false);
+
+  const addItem = (value, setValue, list, setList, setError) => {
+    if (!value.trim()) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    setList([...list, value]);
+    setValue("");
+  };
+
+  const addPerk = () => {
+    if (!editingPerk.title && !editingPerk.description) {
+      setPerkError(true);
+      return;
+    }
+    setPerkError(false);
+    if (editingPerk.index !== null) {
+      const updated = [...perksAndBenefits];
+      updated[editingPerk.index] = {
+        title: editingPerk.title,
+        description: editingPerk.description,
       };
+      setPerks(updated);
+    } else {
+      setPerks([
+        ...perksAndBenefits,
+        { title: editingPerk.title, description: editingPerk.description },
+      ]);
+    }
+    setEditingPerk({ index: null, title: "", description: "" });
+  };
+
+  const deleteItem = (index, setFn, list) => {
+    const updated = [...list];
+    updated.splice(index, 1);
+    setFn(updated);
+  };
+
+  const onSubmit = (data) => {
+    if (
+      !requiredSkills.length ||
+      !categories.length ||
+      !niceToHaves.length ||
+      !perksAndBenefits.length
+    ) {
+      alert("Please add at least one skill, category, perk, and nice-to-have!");
+      return;
+    }
+
+    let formData = {...data,requiredSkills,
+      categories,
+      niceToHaves,
+      perksAndBenefits,}
+
+    addJob(formData)
+    console.log("Form submitted:", {
+      ...data,
+      requiredSkills,
+      categories,
+      niceToHaves,
+      perksAndBenefits,
+    });
+  };
+
   return (
-    // <div className="p-4 md:p-10 max-w-4xl mx-auto">
-    //   <h1 className="text-3xl font-bold mb-6 text-center">Post a Job</h1>
-    //   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-    //     {/* General Information */}
-    //     <div className="grid md:grid-cols-2 gap-4">
-    //       <input
-    //         {...register("title", { required: "Job Title is required" })}
-    //         placeholder="Job Title"
-    //         className="p-2 border rounded w-full"
-    //       />
-    //       {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+    <div className="flex bg-gray-100">
+      <div className="p-4 md:p-10 m-5 w-full rounded-3xl bg-white flex shadow justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className=" w-[90%]">
+          <div className="grid  gap-4">
+            <div className="flex justify-between max-[900px]:block">
+              <div className="w-[45%] max-[900px]:w-[70%] max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="text-md font-semibold" htmlFor="Job Title">
+                  Job Title
+                </label>
+                <p className="text-sm text-gray-600">
+                  Job Title must describe one position
+                </p>
+                <input
+                  placeholder="e.g Software Engineer"
+                  {...register("jobTitle", { required: true })}
+                  className="p-2 border-2 border-gray-400 rounded w-full mt-2 text-sm"
+                />
+              </div>
+              <div className="w-[45%] max-[900px]:w-[70%] max-[900px]:mt-4 max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="text-md font-semibold" htmlFor="Location">
+                  Location
+                </label>
+                <p className="text-sm text-gray-600">Location of the Job</p>
+                <input
+                  list="browsers"
+                  name="browser"
+                  id="browser"
+                  placeholder="Location"
+                  {...register("jobLocation", { required: true })}
+                  className="border-2 border-gray-400 p-2 rounded w-full text-sm mt-2"
+                />
+                <datalist id="browsers">
+                  <option value="Lahore" />
+                  <option value="Faisalabad" />
+                  <option value="Islamabad" />
+                  <option value="Karachi" />
+                  <option value="Multan" />
+                  <option value="Pehsawar" />
+                </datalist>
+              </div>
+            </div>
+            <div className="flex justify-between max-[900px]:block">
+              <div className="w-[45%] max-[900px]:w-[70%] max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="text-md font-semibold" htmlFor="Job Title">
+                  Salary
+                </label>
+                <p className="text-sm text-gray-600">Provide Salary in RS(k)</p>
+                <div className="flex justify-between w-[80%]  max-[900px]:w-full">
+                  <input
+                    placeholder="e.g 23"
+                    {...register("salary", { required: true })}
+                    className="p-2 border-2 border-gray-400 rounded w-[45%] mt-2 text-sm"
+                  />
+                 
+                </div>
+              </div>
+              <div className="w-[45%] max-[900px]:w-[70%] max-[900px]:mt-4 max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="text-md font-semibold" htmlFor="Job Title">
+                  Apply Time
+                </label>
+                <p className="text-sm text-gray-600">Last date to Apply</p>
+                <input
+                  type="date"
+                  {...register("applyBefore", { required: true })}
+                  className="p-2 border-2 border-gray-400 rounded w-[80%] mt-2 text-sm max-[900px]:w-full"
+                />
+              </div>
+            </div>
 
-    //       <input
-    //         {...register("location", { required: "Location is required" })}
-    //         placeholder="Location"
-    //         className="p-2 border rounded w-full"
-    //       />
-    //       {errors.location && <p className="text-red-500">{errors.location.message}</p>}
+            <div>
+              <div>
+                <label className="font-medium" htmlFor="Job Description">
+                  Job Description
+                </label>
+                <textarea
+                  placeholder="Job Description"
+                  {...register("jobDescription", { required: true })}
+                  className="p-2 border-2 border-gray-400 rounded w-full h-32 mt-2"
+                ></textarea>
+              </div>
+            </div>
+            <div className="flex justify-between max-[900px]:block">
+              {/* Skills */}
+              <div className="w-[45%] max-[900px]:w-[70%] max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="text-md font-semibold">Skills</label>
+                <p className="text-sm text-gray-600">
+                  Skills for Applicant need
+                </p>
+                <div className="flex gap-2 mt-2">
+                  <input
+                    value={currentSkill}
+                    onChange={(e) => setCurrentSkill(e.target.value)}
+                    className={`border-gray-400 border-2 rounded p-2 w-full ${
+                      skillError ? "border-red-500" : ""
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      addItem(
+                        currentSkill,
+                        setCurrentSkill,
+                        requiredSkills,
+                        setSkills,
+                        setSkillError
+                      )
+                    }
+                    className="custom-gradient cursor-pointer text-white px-3 rounded"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {requiredSkills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="bg-blue-100 px-3 py-1 rounded-full"
+                    >
+                      {skill}
+                      <button
+                        type="button"
+                        onClick={() => deleteItem(i, setSkills, requiredSkills)}
+                        className="ml-2 text-red-500"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-    //       <input
-    //         {...register("salary", { required: "Salary is required" })}
-    //         placeholder="Salary Range"
-    //         className="p-2 border rounded w-full"
-    //       />
-    //       {errors.salary && <p className="text-red-500">{errors.salary.message}</p>}
-    //     </div>
+              {/* Categories */}
+              <div className="w-[45%] max-[900px]:w-[70%] max-[700px]:w-[80%] max-[500px]:w-full">
+                <label className="font-semibold text-md">Categories</label>
+                <p className="text-sm text-gray-600">Categories for Job</p>
+                <div className="flex gap-2 mt-2">
+                  <input
+                    list="browsers"
+                    name="browser"
+                    id="browser"
+                    value={currentCategory}
+                    onChange={(e) => setCurrentCategory(e.target.value)}
+                    className={`border-gray-400 border-2 rounded p-2 w-full ${
+                      categoryError ? "border-red-500" : ""
+                    }`}
+                  />
+                  <datalist id="browsers">
+                    <option value="Lahore" />
+                    <option value="Faisalabad" />
+                    <option value="Islamabad" />
+                    <option value="Karachi" />
+                    <option value="Multan" />
+                    <option value="Pehsawar" />
+                  </datalist>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      addItem(
+                        currentCategory,
+                        setCurrentCategory,
+                        categories,
+                        setCategories,
+                        setCategoryError
+                      )
+                    }
+                    className="custom-gradient cursor-pointer text-white px-3 rounded "
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {categories.map((cat, i) => (
+                    <span
+                      key={i}
+                      className="bg-green-100 px-3 py-1 rounded-full"
+                    >
+                      {cat}
+                      <button
+                        type="button"
+                        onClick={() => deleteItem(i, setCategories, categories)}
+                        className="ml-2 text-red-500"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* Nice To Haves */}
+            <div>
+              <label className="font-medium">Nice To Haves</label>
+              <div className="flex gap-2 mt-2">
+                <input
+                  value={currentNice}
+                  onChange={(e) => setCurrentNice(e.target.value)}
+                  className={`border-gray-400 border-2 rounded p-2 w-full ${
+                    niceError ? "border-red-500" : ""
+                  }`}
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    addItem(
+                      currentNice,
+                      setCurrentNice,
+                      niceToHaves,
+                      setNiceToHaves,
+                      setNiceError
+                    )
+                  }
+                  className="custom-gradient cursor-pointer text-white px-3 rounded"
+                >
+                  Add
+                </button>
+              </div>
+              <ul className="list-disc list-inside mt-2">
+                {niceToHaves.map((n, i) => (
+                  <li
+                    key={i}
+                    className="flex justify-between items-center bg-yellow-100 px-3 py-1 rounded my-1"
+                  >
+                    {n}
+                    <button
+                      onClick={() => deleteItem(i, setNiceToHaves, niceToHaves)}
+                      className="text-red-500"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-    //     <textarea
-    //       {...register("description", { required: "Job Description is required" })}
-    //       placeholder="Job Description"
-    //       className="p-2 border rounded w-full h-32"
-    //     />
-    //     {errors.description && <p className="text-red-500">{errors.description.message}</p>}
-
-    //     {/* Perks */}
-    //     <div>
-    //       <h2 className="font-semibold">Perks & Benefits</h2>
-    //       <div className="flex gap-2 mt-2">
-    //         <input
-    //           type="text"
-    //           placeholder="Perk Title"
-    //           {...register("perkTitle", { required: false })}
-    //           className="p-2 border rounded w-full"
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={() => {
-    //             appendPerk({ title: getValues("perkTitle") });
-    //             resetField("perkTitle");
-    //           }}
-    //           className="bg-blue-500 text-white px-4 py-1 rounded"
-    //         >
-    //           Add
-    //         </button>
-    //       </div>
-    //       <ul className="mt-4 space-y-2">
-    //         {perkFields.map((perk, index) => (
-    //           <li key={perk.id} className="flex justify-between items-center bg-gray-100 p-2 rounded">
-    //             <span>{perk.title}</span>
-    //             <button
-    //               type="button"
-    //               className="text-red-500"
-    //               onClick={() => removePerk(index)}
-    //             >
-    //               ✕
-    //             </button>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-
-    //     {/* Skills */}
-    //     <div>
-    //       <h2 className="font-semibold">Skills</h2>
-    //       <div className="flex gap-2 mt-2">
-    //         <input
-    //           type="text"
-    //           placeholder="Skill"
-    //           {...register("skillInput")}
-    //           className="p-2 border rounded w-full"
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={() => {
-    //             appendSkill({ name: getValues("skillInput") });
-    //             resetField("skillInput");
-    //           }}
-    //           className="bg-blue-500 text-white px-4 py-1 rounded"
-    //         >
-    //           Add
-    //         </button>
-    //       </div>
-    //       <div className="flex flex-wrap gap-2 mt-4">
-    //         {skillFields.map((skill, index) => (
-    //           <span
-    //             key={skill.id}
-    //             className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center"
-    //           >
-    //             {skill.name}
-    //             <button
-    //               type="button"
-    //               className="ml-2 text-red-500"
-    //               onClick={() => removeSkill(index)}
-    //             >
-    //               ✕
-    //             </button>
-    //           </span>
-    //         ))}
-    //       </div>
-    //     </div>
-
-    //     {/* Categories */}
-    //     <div>
-    //       <h2 className="font-semibold">Categories</h2>
-    //       <div className="flex gap-2 mt-2">
-    //         <input
-    //           type="text"
-    //           placeholder="Category"
-    //           {...register("categoryInput")}
-    //           className="p-2 border rounded w-full"
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={() => {
-    //             appendCategory({ name: getValues("categoryInput") });
-    //             resetField("categoryInput");
-    //           }}
-    //           className="bg-green-500 text-white px-4 py-1 rounded"
-    //         >
-    //           Add
-    //         </button>
-    //       </div>
-    //       <div className="flex flex-wrap gap-2 mt-4">
-    //         {categoryFields.map((category, index) => (
-    //           <span
-    //             key={category.id}
-    //             className="bg-green-100 text-green-800 px-3 py-1 rounded-full flex items-center"
-    //           >
-    //             {category.name}
-    //             <button
-    //               type="button"
-    //               className="ml-2 text-red-500"
-    //               onClick={() => removeCategory(index)}
-    //             >
-    //               ✕
-    //             </button>
-    //           </span>
-    //         ))}
-    //       </div>
-    //     </div>
-
-    //     {/* Job Type and Apply By */}
-    //     <div className="grid md:grid-cols-2 gap-4">
-    //       <input
-    //         type="date"
-    //         {...register("applyBy", { required: "Application deadline is required" })}
-    //         className="p-2 border rounded w-full"
-    //       />
-    //       <select
-    //         {...register("jobType", { required: "Job type is required" })}
-    //         className="p-2 border rounded w-full"
-    //       >
-    //         <option value="Full-Time">Full-Time</option>
-    //         <option value="Part-Time">Part-Time</option>
-    //         <option value="Internship">Internship</option>
-    //         <option value="Contract">Contract</option>
-    //       </select>
-    //     </div>
-
-    //     <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-    //       Post Job
-    //     </button>
-    //   </form>
-    // </div>
-
-    <div className="p-4 md:p-10 max-w-4xl mx-auto">
-    <h1 className="text-3xl font-bold mb-6 text-center">Post a Job</h1>
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* General Information */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <input
-          {...register("title", { required: "Job Title is required" })}
-          placeholder="Job Title"
-          className="p-2 border rounded w-full"
-        />
-        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
-
-        <input
-          {...register("location", { required: "Location is required" })}
-          placeholder="Location"
-          className="p-2 border rounded w-full"
-        />
-        {errors.location && <p className="text-red-500">{errors.location.message}</p>}
-
-        <input
-          {...register("salary", { required: "Salary is required" })}
-          placeholder="Salary Range"
-          className="p-2 border rounded w-full"
-        />
-        {errors.salary && <p className="text-red-500">{errors.salary.message}</p>}
-      </div>
-
-      <textarea
-        {...register("description", { required: "Job Description is required" })}
-        placeholder="Job Description"
-        className="p-2 border rounded w-full h-32"
-      />
-      {errors.description && <p className="text-red-500">{errors.description.message}</p>}
-
-      {/* Perks */}
-      <div>
-        <h2 className="font-semibold">Perks & Benefits</h2>
-        <div className="flex gap-2 mt-2">
-          <input
-            type="text"
-            placeholder="Perk Title"
-            {...register("perkTitle", { required: false })}
-            className="p-2 border rounded w-full"
-          />
-          <button
-            type="button"
-            onClick={() => {
-              appendPerk({ title: getValues("perkTitle") });
-              resetField("perkTitle");
-            }}
-            className="bg-blue-500 text-white px-4 py-1 rounded"
-          >
-            Add
-          </button>
-        </div>
-        <ul className="mt-4 space-y-2">
-          {perkFields.map((perk, index) => (
-            <li key={perk.id} className="flex justify-between items-center bg-gray-100 p-2 rounded">
-              <span>{perk.title}</span>
-              <button
-                type="button"
-                className="text-red-500"
-                onClick={() => removePerk(index)}
+            <div>
+            <label className="font-medium ">Job Type</label>
+              <select
+                name="jobType"
+                {...register("jobType", { required: true })}
+                className="border-gray-400 border-2 mt-2 rounded p-2 w-full outline-gray-400"
               >
-                ✕
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <option value={'full-time'}>Full-Time</option>
+                <option value={'part-time'}>Part-Time</option> 
+                <option value={'internship'}>Internship</option>
+                <option value={'contract'}>Contract</option>  
+              </select>
+            </div>
 
-      {/* Skills */}
-      <div>
-        <h2 className="font-semibold">Skills</h2>
-        <div className="flex gap-2 mt-2">
-          <input
-            type="text"
-            placeholder="Skill"
-            {...register("skillInput")}
-            className="p-2 border rounded w-full"
-          />
-          <button
-            type="button"
-            onClick={() => {
-              appendSkill({ name: getValues("skillInput") });
-              resetField("skillInput");
-            }}
-            className="bg-blue-500 text-white px-4 py-1 rounded"
-          >
-            Add
-          </button>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-4">
-          {skillFields.map((skill, index) => (
-            <span
-              key={skill.id}
-              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center"
-            >
-              {skill.name}
+            {/* Perks */}
+            <div className="">
+              <h2 className="font-semibold text-xl mb-3 ">Perks & Benefits</h2>
+              <div className="grid gap-2 ">
+                <div>
+                  <label className="font-medium">Perk Title</label>
+                  <div className="flex gap-2 w-[45%] max-[900px]:w-[70%] max-[700px]:w-[80%] max-[500px]:w-full">
+                    <input
+                      value={editingPerk.title}
+                      onChange={(e) =>
+                        setEditingPerk({
+                          ...editingPerk,
+                          title: e.target.value,
+                        })
+                      }
+                      placeholder="Perk Title"
+                      className="border-gray-400 border-2 rounded p-2 w-full mt-2"
+                    />
+                    
+                  </div>
+                </div>
+                <div>
+                  <label className="font-medium">Perk Description</label>
+                  <textarea
+                    placeholder="Perk Description"
+                    value={editingPerk.description}
+                    onChange={(e) =>
+                      setEditingPerk({
+                        ...editingPerk,
+                        description: e.target.value,
+                      })
+                    }
+                    className="p-2 border-2 border-gray-400 rounded w-full h-32 mt-2"
+                  />
+                  <button
+                      type="button"
+                      onClick={addPerk}
+                      className="custom-gradient cursor-pointer text-white px-3 py-2 rounded mt-2"
+                    >
+                      {editingPerk.index !== null ? "Update" : "Add"}
+                    </button>
+                </div>
+              </div>
+
+              {perkError && (
+                <p className="text-red-500 text-sm mt-1">
+                  Perk must have title or description.
+                </p>
+              )}
+              <div className="mt-3 space-y-2">
+                {perksAndBenefits.map((perk, index) => (
+                  <div
+                    key={index}
+                    className="p-3 border rounded bg-purple-100 relative"
+                  >
+                    <strong>{perk.title || <em>No Title</em>}</strong>
+                    <p>{perk.description || <em>No Description</em>}</p>
+                    <button
+                      className="absolute top-2 right-2 text-red-500"
+                      onClick={() => deleteItem(index, setPerks, perksAndBenefits)}
+                    >
+                      <RxCross2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex w-full justify-center">
               <button
-                type="button"
-                className="ml-2 text-red-500"
-                onClick={() => removeSkill(index)}
+                type="submit"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 "
               >
-                ✕
+                Post Job
               </button>
-            </span>
-          ))}
-        </div>
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
+  );
+};
 
-      {/* Categories */}
-      <div>
-        <h2 className="font-semibold">Categories</h2>
-        <div className="flex gap-2 mt-2">
-          <input
-            type="text"
-            placeholder="Category"
-            {...register("categoryInput")}
-            className="p-2 border rounded w-full"
-          />
-          <button
-            type="button"
-            onClick={() => {
-              appendCategory({ name: getValues("categoryInput") });
-              resetField("categoryInput");
-            }}
-            className="bg-green-500 text-white px-4 py-1 rounded"
-          >
-            Add
-          </button>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-4">
-          {categoryFields.map((category, index) => (
-            <span
-              key={category.id}
-              className="bg-green-100 text-green-800 px-3 py-1 rounded-full flex items-center"
-            >
-              {category.name}
-              <button
-                type="button"
-                className="ml-2 text-red-500"
-                onClick={() => removeCategory(index)}
-              >
-                ✕
-              </button>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Job Type and Apply By */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <input
-          type="date"
-          {...register("applyBy", { required: "Application deadline is required" })}
-          className="p-2 border rounded w-full"
-        />
-        <select
-          {...register("jobType", { required: "Job type is required" })}
-          className="p-2 border rounded w-full"
-        >
-          <option value="Full-Time">Full-Time</option>
-          <option value="Part-Time">Part-Time</option>
-          <option value="Internship">Internship</option>
-          <option value="Contract">Contract</option>
-        </select>
-      </div>
-
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Post Job
-      </button>
-    </form>
-  </div>
-  )
-}
-
-export default AddJobForm
+export default AddJobForm;

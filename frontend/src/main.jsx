@@ -6,13 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 // import { CookiesProvider } from "react-cookie";
 import AuthContext from "./Contexts/AuthContext.jsx";
 import ApiContext from "./Contexts/ApiContext.jsx";
+import JobApiContext from "./Contexts/JobApiContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     {/* <CookiesProvider> */}
     <AuthContext>
       <ApiContext>
-        <App />
+        <JobApiContext>
+          <App />
+        </JobApiContext>
       </ApiContext>
     </AuthContext>
     {/* </CookiesProvider> */}

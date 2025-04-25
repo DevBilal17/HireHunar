@@ -4,7 +4,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { GiPaperClip } from 'react-icons/gi';
 import AllJobsTable from './AllJobsTable';
 
-const ComDash = () => {
+const ComDash = ({data}) => {
+  let {companyStatistics,services,team} = data
   return (
     <div className="flex bg-gray-100">
       
@@ -16,12 +17,12 @@ const ComDash = () => {
           <div className='grid grid-rows-2 gap-3'>
             <div className="bg-white p-6 rounded-2xl shadow-md">
               <p className="text-gray-600">Total Jobs Posted</p>
-              <h2 className="text-3xl font-bold">45</h2>
+              <h2 className="text-3xl font-bold">{companyStatistics.totalJobsPosted}</h2>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-md">
-              <p className="text-gray-600">Total Team Members</p>
-              <h2 className="text-3xl font-bold">18</h2>
+              <p className="text-gray-600">{team.length>1?'Total Team Members':'Total Team Member'}</p>
+              <h2 className="text-3xl font-bold">{team.length}</h2>
             </div>
 
           </div>
@@ -29,13 +30,13 @@ const ComDash = () => {
           <div>
           <div className='grid grid-rows-2 gap-3'>
             <div className="bg-white p-6 rounded-2xl shadow-md">
-              <p className="text-gray-600">Total Applicants</p>
-              <h2 className="text-3xl font-bold">45</h2>
+              <p className="text-gray-600">Total Hirings</p>
+              <h2 className="text-3xl font-bold">{companyStatistics.totalHires}</h2>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-md">
-              <p className="text-gray-600">hahahah</p>
-              <h2 className="text-3xl font-bold">18</h2>
+              <p className="text-gray-600">Total Services</p>
+              <h2 className="text-3xl font-bold">{services.length}</h2>
             </div>
 
           </div>
@@ -103,7 +104,7 @@ const ComDash = () => {
               </TableBody>
             </Table>
           </div> */}
-          <AllJobsTable/>
+          <AllJobsTable />
         </div>
       </main>
     </div>
@@ -112,4 +113,4 @@ const ComDash = () => {
   )
 }
 
-export default ComDash
+export default React.memo(ComDash)
