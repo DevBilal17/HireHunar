@@ -48,11 +48,12 @@ toast.error(err.response?.data?.message || "Failed")
       try {
         let response = await axios.get('/backend/job/getAvailableCategories');
         // localStorage.setItem('categories',JSON.stringify())
-        console.log(response.data)
+        console.log(response)
       } catch (err) {
         
       }
     }
+    
 
    const updateJobByID = async (id,updatedJobData)=>{
     try {
