@@ -414,3 +414,33 @@ export const setApplicationStatus = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getAvailableCategories = async (req, res, next) => {
+  try {
+    // const token = req.cookies.access_token;
+    // if (!token) {
+    //   return next(errorHandler(401, "Unauthorized: No token provided."));
+    // }
+
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const userId = decoded.id;
+
+    // const user = await User.findById(userId);
+    // if (!user) {
+    //   return next(errorHandler(404, "User not found."));
+    // }
+
+    const categories = await Job.distinct("categories");
+
+    if (!categories || categories.length === 0) {
+      return next(errorHandler(404, "No categories found in jobs."));
+    }
+
+    res.status(200).json({
+      success: true,
+      categories,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
