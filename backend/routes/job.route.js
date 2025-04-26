@@ -4,6 +4,7 @@ import {
   applyForJob,
   createJob,
   deleteJob,
+  getAvailableCategories,
   searchJobs,
   setApplicationStatus,
   showMoreJobs,
@@ -19,5 +20,6 @@ router.get("/searchJobs", searchJobs);
 router.get("/showMoreJobs", showMoreJobs);
 router.post("/applyForJob/:jobId", verifyToken, applyForJob);
 router.post("/setApplicationStatus", verifyToken, setApplicationStatus);
+router.get("/getAvailableCategories", getAvailableCategories);
 
 export default router;
