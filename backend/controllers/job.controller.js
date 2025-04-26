@@ -132,6 +132,7 @@ export const updateJob = async (req, res, next) => {
 
 export const deleteJob = async (req, res, next) => {
   try {
+    console.log(req.params)
     const token = req.cookies.access_token;
     if (!token) {
       return next(errorHandler(401, "Unauthorized: No token provided."));
@@ -148,7 +149,7 @@ export const deleteJob = async (req, res, next) => {
     if (user.personalInfo.userType !== "company") {
       return next(errorHandler(403, "Only companies can delete job posts."));
     }
-
+  
     const jobId = req.params.jobId;
     const job = await Job.findById(jobId);
 

@@ -5,7 +5,7 @@ import { GiPaperClip } from 'react-icons/gi';
 import AllJobsTable from './AllJobsTable';
 
 const ComDash = ({data}) => {
-  let {companyStatistics,services,team} = data
+  let {companyStatistics,jobsPosted,services,team} = data
   return (
     <div className="flex bg-gray-100">
       
@@ -17,7 +17,7 @@ const ComDash = ({data}) => {
           <div className='grid grid-rows-2 gap-3'>
             <div className="bg-white p-6 rounded-2xl shadow-md">
               <p className="text-gray-600">Total Jobs Posted</p>
-              <h2 className="text-3xl font-bold">{companyStatistics.totalJobsPosted}</h2>
+              <h2 className="text-3xl font-bold">{jobsPosted.length}</h2>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-md">

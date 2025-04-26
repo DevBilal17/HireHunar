@@ -10,6 +10,7 @@ import { JobApiData } from "../../../../Contexts/JobApiContext";
 
 const JobsInfo = () => {
    let {userAllData} = useContext(JobApiData)
+   
   return (
     <div>
       <div>

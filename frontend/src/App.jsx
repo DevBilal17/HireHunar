@@ -20,6 +20,7 @@ import AllJobs from "./Pages/PrivatePages/CompanyPages/AllJobs";
 import SingleJobPage from "./Pages/PrivatePages/CompanyPages/JobPage/SingleJobPage";
 import EditProfile from "./Pages/PrivatePages/CompanyPages/JobPage/EditProfile";
 import UserProfileEditPage from "./Pages/PrivatePages/ProfilePage/UserProfileEdit/UserProfileEditPage";
+import UpdateJob from "./Pages/PrivatePages/CompanyPages/JobPage/UpdateJob";
 const App = () => {
   const [url, setUrl] = useState(false);
   let location = useLocation();
@@ -57,7 +58,7 @@ const App = () => {
           <Route path= '/all-jobs' element={<AllJobs/>} />
 
           <Route path="/company-profile/edit-profile/:id" element={<EditProfile/>}/>
-
+          <Route path="/update-job" element={<UpdateJob/>} />
           <Route path="/my-profile/edit-profile" element={<UserProfileEditPage/>} />
         </Route>
       </Routes>
