@@ -7,12 +7,18 @@ import {
   updateUser,
 } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
+import { upload } from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 
 router.get("/test", test);
 router.get("/getUserById/:userId", verifyToken, getUserById);
-router.put("/updateUser/:userId", verifyToken, updateUser);
+router.put(
+  "/updateUser/:userId",
+  verifyToken,
+  upload.single("profilePicture"),
+  updateUser
+);
 router.delete("/deleteUser/:userId", verifyToken, deleteUser);
 router.get("/getUserDashboardInfo/:userId", verifyToken, getUserDashboardInfo);
 
