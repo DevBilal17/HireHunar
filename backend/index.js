@@ -24,12 +24,6 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-// import path from "path";
-
-// const __dirname = path.resolve(); // this gives root directory path
-
-// app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-
 app.get("/", (req, res) => {
   res.send("Hello");
 });
