@@ -45,16 +45,3 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-
-// list of commands for backend
-// npm init -y
-// npm i express
-// npm i mongoose
-// npm i dotenv
-// npm i bcryptjs
-// npm i jsonwebtoken
-// npm install cors
-// npm i cookie-parser
-
-// CS@11223344
-// malikbf7
